@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+		<title>TavSim</title>
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+        <link href="https://fonts.googleapis.com/css?family=MedievalSharp&display=swap" rel="stylesheet">
+    </head>
+	
+	<body>
+		<header>
+            <h1 style="text-align: center; font-family: 'MedievalSharp', cursive;">Tavern Simulator</h1>
+            <hr/>
+		</header>
+        <br/>
+        
+		<nav>
+		
+		</nav>
+        
+        <div class="container-fluid justify-content-center" style="margin: 0 auto;">
+            <div class="row justify-content-center">
+                <div class="col-lg-12 justify-content-center">
+
+                    
+                    <form action="createTavern" method="POST">
+                        <div class="row justify-content-center">
+                            <div class="col-md-4">
+                                <div class="form-group row justify-content-center">
+                                    <label for="tavernName" class="col-form-label">Tavern Name: </label>
+                                    <div class="col-md-6">
+                                        <input type="text" name="tavernName" id="tavernName" class="form-control" />
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group row justify-content-center">
+                                    <label for="tavernOwner" class="col-form-label">Tavern Owner: </label>
+                                    <div class="col-md-6">
+                                        <input type="text" name="tavernOwner" id="tavernOwner" class="form-control" />
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group row justify-content-center">
+                                    <label for="tavernAbout" class="col-form-label">Description: </label>
+                                    <div class="col-md-6">
+                                        <input type="text" name="tavernAbout" id="tavernAbout" class="form-control" />
+                                    </div>
+                                </div>
+                            </div>
+                            <button type="submit" class="btn btn-primary btn-lg badge-pill">Create Tavern</button>
+                        </div>
+                    </form>
+                    <br/>
+                    <div class="row justify-content-center">
+                        <div class="col-md-4">
+                            <div class="form-group row justify-content-center">
+                                <label for="tavernFunds" class="col-form-label">Current Funds: </label>
+                                <div class="col-md-6">
+                                    <input type="text" name="tavernFunds" id="tavernFunds" class="form-control" readonly />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row justify-content-center">
+                        <div class="col-md-4">
+                            <div class="form-group row justify-content-center">
+                                <label for="tavernFood" class="col-form-label">Food: </label>
+                                <div class="col-md-6">
+                                    <input type="text" name="tavernFood" id="tavernFood" class="form-control" readonly />
+                                </div>
+                            </div>
+                            <div class="form-group row justify-content-center">
+                                <label for="foodToAdd" class="col-form-label">Add Food: </label>
+                                <div class="col-sm-3">
+                                    <input type="number" class="form-control" name="foodToAdd" id="foodToAdd" />
+                                </div>
+                                <label for="buyFood" class="col-form-label">Purchase:</label>
+                                <div style="padding-left: 5px;">
+                                    <button class="btn btn-primary badge-pill" id="buyFood">[Amount]</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group row justify-content-center">
+                                <label for="tavernDrinks" class="col-form-label">Drinks:</label>
+                                <div class="col-md-6">
+                                    <input type="text" name="tavernFunds" id="tavernFunds" class="form-control" readonly />
+                                </div>
+                            </div>
+                            <div class="form-group row justify-content-center">
+                                <label for="drinksToAdd" class="col-form-label">Add Drinks:</label>
+                                <div class="col-sm-3">
+                                    <input type="number" class="form-control" name="drinksToAdd" id="drinksToAdd" />
+                                </div>
+                                <label for="buyDrinks" class="col-form-label">Purchase:</label>
+                                <div style="padding-left: 5px;">
+                                    <button class="btn btn-primary badge-pill" id="buyDrinks">[Amount]</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group row justify-content-center">
+                                <label for="tavernRepairs" class="col-form-label">Repairs: </label>
+                                <div class="col-md-6">
+                                    <input type="text" name="tavernRepairs" id="tavernRepairs" class="form-control" readonly />
+                                </div>
+                            </div>
+                            <div class="form-group row justify-content-center">
+                                <label for="repairsToAdd" class="col-form-label">Add Repairs: </label>
+                                <div class="col-sm-3">
+                                    <input type="number" class="form-control" name="repairsToAdd" id="repairsToAdd" />
+                                </div>
+                                <label for="buyRepairs" class="col-form-label">Purchase:</label>
+                                <div style="padding-left: 5px;">
+                                    <button class="btn btn-primary badge-pill" id="buyRepairs">[Amount]</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row justify-content-center">
+                        <div class="col-md-4">
+                            <div class="form-group row justify-content-center">
+                                <label for="tavernReportEarnings" class="col-form-label">Daily Earnings: </label>
+                                <div class="col-md-6">
+                                    <input type="text" name="tavernReportEarnings" id="tavernReportEarnings" class="form-control" readonly />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group row justify-content-center">
+                                <label for="tavernReportRoll" class="col-form-label">Roll Result: </label>
+                                <div class="col-md-6">
+                                    <input type="text" name="tavernReportRoll" id="tavernReportRoll" class="form-control" readonly />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group row justify-content-center">
+                                <label for="tavernReportDay" class="col-form-label">Business Day: </label>
+                                <div class="col-md-6">
+                                    <input type="text" name="tavernReportDay" id="tavernReportDay" class="form-control" readonly />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row justify-content-center">
+                        <div class="justify-content-center">
+                            <button class="btn btn-primary badge-pill btn-lg" id="nextDay">Next Day</button>
+                        </div>
+                    </div>
+                    <br/>
+                    <div class="row justify-content-center">
+                        <div class="col-lg-6 justify-content-center">
+                            <textarea style="width: 100%;" readonly>
+                            
+                            </textarea>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+		<footer>
+		
+		</footer>
+		<script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+        <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+	</body>
+</html>
