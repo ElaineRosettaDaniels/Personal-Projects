@@ -70,7 +70,7 @@
                                 <tbody>
                                     <tr th:each="tavern : ${taverns}">
                                         <td th:text="${tavern.tavernId}">Tavern ID</td>
-                                        <td><a href="#" th:text="${tavern.tavernName}" th:href="@{/taverngame(id=${tavern.tavernId})}">Name</a></td>
+                                        <td><a href="#" th:text="${tavern.tavernName}" th:href="@{/tavernGame(tavernId=${tavern.tavernId})}">Name</a></td>
                                         <td th:text="${tavern.tavernOwner}">Owner</td>
                                         <td th:text="${tavern.tavernFunds}">Funds</td>
                                         <td><a href="#" th:href="@{/editTavern(tavernId=${tavern.tavernId})}">Edit</a></td>

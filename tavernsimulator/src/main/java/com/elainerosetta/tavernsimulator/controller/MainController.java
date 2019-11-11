@@ -29,7 +29,7 @@ public class MainController {
     @Autowired
     TavernReportDao tavRepDao;
     
-    @GetMapping("index")
+    @GetMapping("/")
     public String displayTavSimHome(Model model) {
         List<Tavern> taverns = tavDao.getAllTaverns();
         model.addAttribute("taverns", taverns);
@@ -52,14 +52,14 @@ public class MainController {
         tav.setTavernRepairs(100);
         tavDao.addTavern(tav);
         
-        return "redirect:/index";
+        return "redirect:/";
     }
     
     @GetMapping("deleteTavern")
     public String deleteTavern(HttpServletRequest req) {
         int tavernId = Integer.parseInt(req.getParameter("tavernId"));
         tavDao.deleteTavern(tavernId);
-        return "redirect:/index";
+        return "redirect:/";
     }
     
 }
