@@ -18,7 +18,7 @@ CREATE TABLE tavern (
 DROP TABLE IF EXISTS tavernReport;
 CREATE TABLE tavernReport (
 	tavernReportId INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
-	tavernReportDay DATE NOT NULL,
+	tavernReportWeek INT NOT NULL,
     tavernReportRoll INT NOT NULL,
     tavernReportEarnings INT NOT NULL,
     tavernReportFunds INT NOT NULL,

@@ -15,7 +15,7 @@ import java.util.Objects;
 public class TavernReport {
     
     private int tavernReportId;
-    private LocalDate tavernReportDay;
+    private int tavernReportWeek;
     private int tavernReportRoll;
     private int tavernReportEarnings;
     private int tavernReportFunds;
@@ -28,13 +28,13 @@ public class TavernReport {
     public void setTavernReportId(int tavernReportId) {
         this.tavernReportId = tavernReportId;
     }
-    
-    public LocalDate getTavernReportDay() {
-        return tavernReportDay;
+
+    public int getTavernReportWeek() {
+        return tavernReportWeek;
     }
 
-    public void setTavernReportDay(LocalDate tavernReportDay) {
-        this.tavernReportDay = tavernReportDay;
+    public void setTavernReportWeek(int tavernReportWeek) {
+        this.tavernReportWeek = tavernReportWeek;
     }
 
     public int getTavernReportRoll() {
@@ -72,12 +72,12 @@ public class TavernReport {
     @Override
     public int hashCode() {
         int hash = 7;
-        hash = 79 * hash + this.tavernReportId;
-        hash = 79 * hash + Objects.hashCode(this.tavernReportDay);
-        hash = 79 * hash + this.tavernReportRoll;
-        hash = 79 * hash + this.tavernReportEarnings;
-        hash = 79 * hash + this.tavernReportFunds;
-        hash = 79 * hash + this.tavernId;
+        hash = 71 * hash + this.tavernReportId;
+        hash = 71 * hash + this.tavernReportWeek;
+        hash = 71 * hash + this.tavernReportRoll;
+        hash = 71 * hash + this.tavernReportEarnings;
+        hash = 71 * hash + this.tavernReportFunds;
+        hash = 71 * hash + this.tavernId;
         return hash;
     }
 
@@ -96,6 +96,9 @@ public class TavernReport {
         if (this.tavernReportId != other.tavernReportId) {
             return false;
         }
+        if (this.tavernReportWeek != other.tavernReportWeek) {
+            return false;
+        }
         if (this.tavernReportRoll != other.tavernReportRoll) {
             return false;
         }
@@ -108,24 +111,12 @@ public class TavernReport {
         if (this.tavernId != other.tavernId) {
             return false;
         }
-        if (!Objects.equals(this.tavernReportDay, other.tavernReportDay)) {
-            return false;
-        }
         return true;
     }
 
     @Override
     public String toString() {
-        return "TavernReport{" 
-                + "tavernReportId=" + tavernReportId 
-                + ", tavernReportDay=" + tavernReportDay 
-                + ", tavernReportRoll=" + tavernReportRoll 
-                + ", tavernReportEarnings=" + tavernReportEarnings 
-                + ", tavernReportFunds=" + tavernReportFunds 
-                + ", tavernId=" + tavernId 
-                + '}';
+        return "TavernReport{" + "tavernReportId=" + tavernReportId + ", tavernReportWeek=" + tavernReportWeek + ", tavernReportRoll=" + tavernReportRoll + ", tavernReportEarnings=" + tavernReportEarnings + ", tavernReportFunds=" + tavernReportFunds + ", tavernId=" + tavernId + '}';
     }
-
-    
     
 }

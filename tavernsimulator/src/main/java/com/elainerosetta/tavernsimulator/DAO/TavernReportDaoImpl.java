@@ -47,10 +47,10 @@ public class TavernReportDaoImpl implements TavernReportDao {
     @Override
     @Transactional
     public TavernReport addTavernReport(TavernReport report) {
-        final String REQ = "INSERT INTO tavernReport(tavernReportDay, tavernReportRoll, "
+        final String REQ = "INSERT INTO tavernReport(tavernReportWeek, tavernReportRoll, "
                 + "tavernReportEarnings, tavernReportFunds, tavernId) VALUES(?,?,?,?,?)";
         jdbc.update(REQ, 
-                report.getTavernReportDay(), 
+                report.getTavernReportWeek(), 
                 report.getTavernReportRoll(), 
                 report.getTavernReportEarnings(), 
                 report.getTavernReportFunds(), 
@@ -74,7 +74,7 @@ public class TavernReportDaoImpl implements TavernReportDao {
         public TavernReport mapRow(ResultSet rs, int index) throws SQLException {
             TavernReport report = new TavernReport();
             report.setTavernReportId(rs.getInt("tavernReportId"));
-            report.setTavernReportDay(rs.getObject("tavernReportDay", LocalDate.class));
+            report.setTavernReportWeek(rs.getInt("tavernReportWeek"));
             report.setTavernReportRoll(rs.getInt("tavernReportRoll"));
             report.setTavernReportEarnings(rs.getInt("tavernReportEarnings"));
             report.setTavernReportFunds(rs.getInt("tavernReportFunds"));

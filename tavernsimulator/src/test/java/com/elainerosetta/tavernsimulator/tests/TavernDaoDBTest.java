@@ -120,7 +120,7 @@ public class TavernDaoDBTest {
         tav = tavDao.addTavern(tav);
         
         TavernReport rep = new TavernReport();
-        rep.setTavernReportDay(LocalDate.of(2019, 10, 31));
+        rep.setTavernReportWeek(1);
         rep.setTavernReportRoll(50);
         rep.setTavernReportEarnings(100);
         rep.setTavernReportFunds(200);
