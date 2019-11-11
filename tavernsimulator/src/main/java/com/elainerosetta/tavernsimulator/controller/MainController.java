@@ -55,4 +55,11 @@ public class MainController {
         return "redirect:/index";
     }
     
+    @GetMapping("deleteTavern")
+    public String deleteTavern(HttpServletRequest req) {
+        int tavernId = Integer.parseInt(req.getParameter("tavernId"));
+        tavDao.deleteTavern(tavernId);
+        return "redirect:/index";
+    }
+    
 }
