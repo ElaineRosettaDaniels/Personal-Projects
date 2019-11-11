@@ -11,7 +11,7 @@ var gpPerDrink = 1;
 var gpPerRepair = 2;
 var tendayExpense = 50;
 
-function calcRollMod() {
+function calcRoll() {
     var rollMod = 10;
     if (currFood < 1) {
         rollMod - 25;
@@ -34,13 +34,40 @@ function calcRollMod() {
     }
 
     rollMod += promotionGold;
-    return rollMod;
-}
-
-function rollForTenday() {
+    
     var roll = Math.floor(Math.random() * 100) + 1;
     roll += rollMod;
     return roll;
+}
+
+function tendayGold(roll) {
+    var coffers = 0;
+    var profits = 0;
+    var tR = 0;
+    if (roll <= 20) {
+        coffers -= tendayExpense * 1.5;
+    } else if (roll <= 30) {
+        coffers -= tendayExpense;
+    } else if (roll <= 40) {
+        coffers -= tendayExpense / 2;
+    } else if (roll <= 60) {
+        coffers += 0;
+    } else if (roll <= 80) {
+        profits = (Math.floor(Math.random() * 6) + 1) * 5;
+    } else if (roll <= 90) {
+        for (i = 0; i < 2; i++) {
+            tR += Math.floor(Math.random() * 8) + 1;
+        }
+        profits = tR * 5;
+    } else if (roll >= 91) {
+        for (i = 0; i < 3; i++) {
+            tR += Math.floor(Math.random() * 10) + 1;
+        }
+        profits = tR * 5;
+    }
+
+    currFunds += coffers;
+    currFunds += profits;
 }
 
 $(document).ready(function(){
