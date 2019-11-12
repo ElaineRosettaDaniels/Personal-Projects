@@ -42,7 +42,6 @@ function calcRoll() {
 
 function tendayGold(roll) {
     var coffers = 0;
-    var profits = 0;
     var tR = 0;
     if (roll <= 20) {
         coffers -= tendayExpense * 1.5;
@@ -58,16 +57,15 @@ function tendayGold(roll) {
         for (i = 0; i < 2; i++) {
             tR += Math.floor(Math.random() * 8) + 1;
         }
-        profits = tR * 5;
+        coffers = tR * 5;
     } else if (roll >= 91) {
         for (i = 0; i < 3; i++) {
             tR += Math.floor(Math.random() * 10) + 1;
         }
-        profits = tR * 5;
+        coffers = tR * 5;
     }
 
     currFunds += coffers;
-    currFunds += profits;
 }
 
 $(document).ready(function(){
