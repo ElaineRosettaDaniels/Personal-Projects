@@ -52,7 +52,7 @@ function tendayGold(roll) {
     } else if (roll <= 60) {
         coffers += 0;
     } else if (roll <= 80) {
-        profits = (Math.floor(Math.random() * 6) + 1) * 5;
+        coffers = (Math.floor(Math.random() * 6) + 1) * 5;
     } else if (roll <= 90) {
         for (i = 0; i < 2; i++) {
             tR += Math.floor(Math.random() * 8) + 1;
