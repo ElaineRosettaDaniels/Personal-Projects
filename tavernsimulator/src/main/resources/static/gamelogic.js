@@ -5,7 +5,8 @@ var currRepairs = $("#tavernRepairs").val();
 var foodToAdd = $("#foodToAdd").val();
 var drinksToAdd = $("#drinksToAdd").val();
 var repairsToAdd = $("#repairsToAdd").val();
-var promotionGold = $("#weekPromote").val();
+var currWeek = 1;
+$("#tavernReportWeek").val(currWeek);
 var gpPerFood = 1;
 var gpPerDrink = 1;
 var gpPerRepair = 2;
@@ -32,11 +33,14 @@ function calcRoll() {
     } else if (currRepairs < 50) {
         rollMod - 5;
     }
-
-    rollMod += promotionGold;
+    var promotionGold = $("#weekPromote").val();
+    rollMod = Number(rollMod) + Number(promotionGold);
+    var minusPromo = Number(currFunds) - Number(promotionGold);
+    $("#tavernFunds").val(minusPromo);
+    currFunds = $("#tavernFunds").val();
+    var roll = Math.floor(Math.random() * 100) + 1 + Number(rollMod);
     
-    var roll = Math.floor(Math.random() * 100) + 1;
-    roll += rollMod;
+    $("#tavernReportRoll").val(roll);
     return roll;
 }
 
@@ -44,32 +48,42 @@ function tendayGold(roll) {
     var coffers = 0;
     var tR = 0;
     if (roll <= 20) {
-        coffers -= tendayExpense * 1.5;
+        coffers -= Number(tendayExpense) * 1.5;
     } else if (roll <= 30) {
-        coffers -= tendayExpense;
+        coffers -= Number(tendayExpense);
     } else if (roll <= 40) {
-        coffers -= tendayExpense / 2;
+        coffers -= Number(tendayExpense) / 2;
     } else if (roll <= 60) {
-        coffers += 0;
+        coffers + 0;
     } else if (roll <= 80) {
-        coffers = (Math.floor(Math.random() * 6) + 1) * 5;
+        coffers += (Math.floor(Math.random() * 6) + 1) * 5;
     } else if (roll <= 90) {
         for (i = 0; i < 2; i++) {
             tR += Math.floor(Math.random() * 8) + 1;
         }
-        coffers = tR * 5;
+        coffers += Number(tR) * 5;
     } else if (roll >= 91) {
         for (i = 0; i < 3; i++) {
             tR += Math.floor(Math.random() * 10) + 1;
         }
-        coffers = tR * 5;
+        coffers += Number(tR) * 5;
     }
 
-    currFunds += coffers;
+    var earnings = Number(coffers);
+    var newFunds = Number(currFunds) + Number(coffers);
+    $("#tavernFunds").val(newFunds);
+    currFunds = $("#tavernFunds").val();
+    $("#tavernReportEarnings").val(earnings);
 }
 
 $(document).ready(function(){
 
+    
 
+    $("#nextWeek").on("click", function(){
+        tendayGold(calcRoll());
+        currWeek++;
+        $("#tavernReportWeek").val(currWeek);
+    });
 
 });
