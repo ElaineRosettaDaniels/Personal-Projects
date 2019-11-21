@@ -17,7 +17,7 @@ public interface RiderDao {
     Rider getRiderById(int riderId);
     List<Rider> getAllRiders();
     List<Rider> getRidersForVehicle(int vehicleId);
-    Rider addRider(Rider rider);
-    void updateRider(Rider rider);
-    void deleteRider(Rider rider);
+    Rider addRider(Rider r);
+    void updateRider(Rider r);
+    void deleteRider(Rider r);
 }

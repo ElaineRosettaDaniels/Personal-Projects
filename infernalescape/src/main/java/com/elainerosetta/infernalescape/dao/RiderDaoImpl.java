@@ -5,10 +5,86 @@
  */
 package com.elainerosetta.infernalescape.dao;
 
+import com.elainerosetta.infernalescape.dto.Rider;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.List;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataAccessException;
+import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.RowMapper;
+
 /**
  *
  * @author Asus1
  */
-public class RiderDaoImpl {
+public class RiderDaoImpl implements RiderDao {
+
+    
+    @Autowired
+    JdbcTemplate jdbc;
+    
+    @Override
+    public Rider getRiderById(int riderId) {
+        try {
+            final String REQ = "SELECT * FROM rider WHERE riderId = ?";
+            return jdbc.queryForObject(REQ, new RiderMapper(), riderId);
+        } catch(DataAccessException ex) {
+            return null;
+        }
+    }
+
+    @Override
+    public List<Rider> getAllRiders() {
+        final String REQ = "SELECT * FROM rider";
+        return jdbc.query(REQ, new RiderMapper());
+    }
+
+    @Override
+    public List<Rider> getRidersForVehicle(int vehicleId) {
+        final String REQ = "SELECT r.* FROM rider r JOIN vehicleRiders vr ON "
+                + "vr.riderId = r.riderId WHERE vr.vehicleId = ?";
+        return jdbc.query(REQ, new RiderMapper(), vehicleId);
+    }
+
+    @Override
+    public Rider addRider(Rider r) {
+        final String REQ = "INSERT INTO rider(riName, armor, hitPoints, stationId) "
+                + "VALUES(?,?,?,?)";
+        jdbc.update(REQ, 
+                r.getName(), 
+                r.getArmor(), 
+                r.getHitPoints(), 
+                r.getStationId());
+        
+        int newId = jdbc.queryForObject("SELECT LAST_INSERT_ID()", Integer.class);
+        r.setRiderId(newId);
+        return r;
+    }
+
+    @Override
+    public void updateRider(Rider r) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void deleteRider(Rider r) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+    
+    public static final class RiderMapper implements RowMapper<Rider> {
+        
+        @Override
+        public Rider mapRow(ResultSet rs, int index) throws SQLException {
+            Rider r = new Rider();
+            r.setRiderId(rs.getInt("riderId"));
+            r.setName(rs.getString("riName"));
+            r.setArmor(rs.getInt("armor"));
+            r.setHitPoints(rs.getInt("hitPoints"));
+            r.setStationId(rs.getInt("stationId"));
+            
+            return r;
+        }
+    }
     
 }
