@@ -63,6 +63,7 @@ public class TavernDaoImpl implements TavernDao {
     }
 
     @Override
+    @Transactional
     public void updateTavernBio(Tavern tav) {
         final String REQ = "UPDATE tavern SET tavernName = ?, tavernOwner = ?, tavernAbout = ?"
                 + " WHERE tavernId = ?";
@@ -74,6 +75,7 @@ public class TavernDaoImpl implements TavernDao {
     }
     
     @Override
+    @Transactional
     public void updateTavernStats(Tavern tav) {
         final String REQ = "UPDATE tavern SET tavernFunds = ?, tavernDrinks = ?, "
                 + "tavernFood = ?, tavernRepairs = ? WHERE tavernId = ?";

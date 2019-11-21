@@ -16,7 +16,7 @@ CREATE TABLE vehicle (
     position INT NOT NULL,
     ichorBoosted BOOL NOT NULL,
     ichorUses INT NOT NULL,
-    maxCrew INT NOT NULL
+    maxRiders INT NOT NULL
 );
 
 DROP TABLE IF EXISTS station;
@@ -30,28 +30,28 @@ CREATE TABLE station (
 
 DROP TABLE IF EXISTS vehicleStations;
 CREATE TABLE vehicleStations (
-	relId INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
     vehicleId INT NOT NULL,
     stationId INT NOT NULL,
-    CONSTRAINT fk_vehicle_vehicleStations FOREIGN KEY (vehicleId) REFERENCES vehicle (vehicleId),
-    CONSTRAINT fk_station_vehicleStations FOREIGN KEY (stationId) REFERENCES station (stationId)
+    PRIMARY KEY (vehicleId, stationId),
+    FOREIGN KEY (vehicleId) REFERENCES vehicle (vehicleId),
+    FOREIGN KEY (stationId) REFERENCES station (stationId)
 );
 
-DROP TABLE IF EXISTS crew;
-CREATE TABLE crew (
-	crewId INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
-    crName VARCHAR(30) NOT NULL,
+DROP TABLE IF EXISTS rider;
+CREATE TABLE rider (
+	riderId INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
+    riName VARCHAR(30) NOT NULL,
     armor INT NOT NULL,
     hitPoints INT NOT NULL,
-    attack INT NOT NULL,
     stationId INT,
-    CONSTRAINT fk_station_crew FOREIGN KEY (stationId) REFERENCES station (stationId)
+    FOREIGN KEY (stationId) REFERENCES station (stationId)
 );
 
-DROP TABLE IF EXISTS vehicleCrew;
-CREATE TABLE vehicleCrew (
+DROP TABLE IF EXISTS vehicleRiders;
+CREATE TABLE vehicleRiders (
 	vehicleId INT NOT NULL,
-    crewId INT NOT NULL,
-    CONSTRAINT fk_vehicle_vehicleCrew FOREIGN KEY (vehicleId) REFERENCES vehicle (vehicleId),
-    CONSTRAINT fk_crew_vehicleCrew FOREIGN KEY (crewId) REFERENCES crew (crewId)
+    riderId INT NOT NULL,
+    PRIMARY KEY (vehicleId, riderId),
+    FOREIGN KEY (vehicleId) REFERENCES vehicle (vehicleId),
+    FOREIGN KEY (riderId) REFERENCES rider (riderId)
 );
