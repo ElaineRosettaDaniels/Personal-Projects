@@ -76,13 +76,26 @@ public class StationDaoImpl implements StationDao {
 
     @Override
     @Transactional
-    public void updateStation(Station station) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public void updateStation(Station s) {
+        final String REQ = "UPDATE station SET stName = ?, armorBonus = ?, "
+                + "stAction = ?, crewed = ? WHERE stationId = ?";
+        jdbc.update(REQ, 
+                s.getName(), 
+                s.getArmorBonus(), 
+                s.getStAction(), 
+                s.isCrewed(), 
+                s.getStationId());
     }
 
     @Override
-    public void deleteStation(Station station) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    @Transactional
+    public void deleteStation(Station s) {
+        final String DELETE_VS = "DELETE vs.* FROM vehicleStations vs "
+                + "WHERE stationId = ?";
+        jdbc.update(DELETE_VS, s.getStationId());
+        
+        final String DELETE_S = "DELETE from station WHERE stationId = ?";
+        jdbc.update(DELETE_S, s.getStationId());
     }
 
     public static final class StationMapper implements RowMapper<Station> {
