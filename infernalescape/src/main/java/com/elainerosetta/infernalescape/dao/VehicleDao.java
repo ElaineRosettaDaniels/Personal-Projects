@@ -15,7 +15,7 @@ import java.util.List;
 public interface VehicleDao {
     
     Vehicle getVehicleById(int vehicleId);
-    List<Vehicle> getAllVehicle();
+    List<Vehicle> getAllVehicles();
     Vehicle addVehicle(Vehicle v);
     void updateVehicle(Vehicle v);
     void deleteVehicle(int vehicleId);

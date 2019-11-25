@@ -13,12 +13,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
+import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 /**
  *
  * @author Asus1
  */
+@Repository
 public class VehicleDaoImpl implements VehicleDao {
     
     @Autowired
@@ -35,7 +37,7 @@ public class VehicleDaoImpl implements VehicleDao {
     }
 
     @Override
-    public List<Vehicle> getAllVehicle() {
+    public List<Vehicle> getAllVehicles() {
         final String REQ = "SELECT * FROM vehicle";
         return jdbc.query(REQ, new VehicleMapper());
     }
@@ -45,7 +47,7 @@ public class VehicleDaoImpl implements VehicleDao {
     public Vehicle addVehicle(Vehicle v) {
         final String REQ = "INSERT INTO vehicle(veName, veType, armor, "
                 + "speed, hitPoints, damThres, misThres, position, ichorBoosted,"
-                + "ichorUses, maxCrew)"
+                + "ichorUses, maxRiders)"
                 + "VALUES(?,?,?,?,?,?,?,?,?,?,?)";
         jdbc.update(REQ, 
                 v.getVeName(),
@@ -58,7 +60,7 @@ public class VehicleDaoImpl implements VehicleDao {
                 v.getPosition(),
                 v.isIchorBoosted(),
                 v.getIchorUses(),
-                v.getMaxCrew());
+                v.getMaxRiders());
         
         int newId = jdbc.queryForObject("SELECT LAST_INSERT_ID()", Integer.class);
         v.setVehicleId(newId);
@@ -68,9 +70,9 @@ public class VehicleDaoImpl implements VehicleDao {
     @Override
     @Transactional
     public void updateVehicle(Vehicle v) {
-        final String REQ = "UPDATE tavern SET veName = ?, veType = ?, armor = ?,"
+        final String REQ = "UPDATE vehicle SET veName = ?, veType = ?, armor = ?,"
                 + " speed = ?, hitPoints = ?, damThres = ?, misThres = ?, "
-                + "position = ?, ichorBoosted = ?, ichorUses = ?, maxCrew = ? "
+                + "position = ?, ichorBoosted = ?, ichorUses = ?, maxRiders = ? "
                 + "WHERE vehicleId = ?";
         jdbc.update(REQ,
                 v.getVeName(), 
@@ -83,7 +85,7 @@ public class VehicleDaoImpl implements VehicleDao {
                 v.getPosition(), 
                 v.isIchorBoosted(), 
                 v.getIchorUses(), 
-                v.getMaxCrew(), 
+                v.getMaxRiders(), 
                 v.getVehicleId());
     }
 
@@ -116,7 +118,7 @@ public class VehicleDaoImpl implements VehicleDao {
             v.setPosition(rs.getInt("position"));
             v.setIchorBoosted(rs.getBoolean("ichorBoosted"));
             v.setIchorUses(rs.getInt("ichorUses"));
-            v.setMaxCrew(rs.getInt("maxCrew"));
+            v.setMaxRiders(rs.getInt("maxRiders"));
             
             return v;
         }

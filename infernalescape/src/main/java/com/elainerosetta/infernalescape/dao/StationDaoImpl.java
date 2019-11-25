@@ -15,12 +15,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
+import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 /**
  *
  * @author Asus1
  */
+@Repository
 public class StationDaoImpl implements StationDao {
 
     @Autowired
@@ -38,7 +40,8 @@ public class StationDaoImpl implements StationDao {
 
     @Override
     public List<Station> getAllStations() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        final String REQ = "SELECT * FROM station";
+        return jdbc.query(REQ, new StationMapper());
     }
 
     @Override

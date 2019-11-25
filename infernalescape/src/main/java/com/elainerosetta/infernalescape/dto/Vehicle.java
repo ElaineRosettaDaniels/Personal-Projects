@@ -24,7 +24,7 @@ public class Vehicle {
     private int position;
     private boolean ichorBoosted;
     private int ichorUses;
-    private int maxCrew;
+    private int maxRiders;
 
     public Vehicle() {
     }
@@ -117,12 +117,12 @@ public class Vehicle {
         this.ichorUses = ichorUses;
     }
 
-    public int getMaxCrew() {
-        return maxCrew;
+    public int getMaxRiders() {
+        return maxRiders;
     }
 
-    public void setMaxCrew(int maxCrew) {
-        this.maxCrew = maxCrew;
+    public void setMaxRiders(int maxRiders) {
+        this.maxRiders = maxRiders;
     }
 
     @Override
@@ -139,7 +139,7 @@ public class Vehicle {
         hash = 41 * hash + this.position;
         hash = 41 * hash + (this.ichorBoosted ? 1 : 0);
         hash = 41 * hash + this.ichorUses;
-        hash = 41 * hash + this.maxCrew;
+        hash = 41 * hash + this.maxRiders;
         return hash;
     }
 
@@ -182,7 +182,7 @@ public class Vehicle {
         if (this.ichorUses != other.ichorUses) {
             return false;
         }
-        if (this.maxCrew != other.maxCrew) {
+        if (this.maxRiders != other.maxRiders) {
             return false;
         }
         if (!Objects.equals(this.veName, other.veName)) {
@@ -210,7 +210,7 @@ public class Vehicle {
                 ", position=" + position + 
                 ", ichorBoosted=" + ichorBoosted + 
                 ", ichorUses=" + ichorUses + 
-                ", maxCrew=" + maxCrew + 
+                ", maxRiders=" + maxRiders + 
                 '}';
     }
     
