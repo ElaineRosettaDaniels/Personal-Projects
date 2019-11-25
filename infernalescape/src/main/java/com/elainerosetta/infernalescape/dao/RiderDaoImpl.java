@@ -13,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
+import org.springframework.transaction.annotation.Transactional;
 
 /**
  *
@@ -48,6 +49,7 @@ public class RiderDaoImpl implements RiderDao {
     }
 
     @Override
+    @Transactional
     public Rider addRider(Rider r) {
         final String REQ = "INSERT INTO rider(riName, armor, hitPoints, stationId) "
                 + "VALUES(?,?,?,?)";
@@ -63,13 +65,23 @@ public class RiderDaoImpl implements RiderDao {
     }
 
     @Override
+    @Transactional
     public void updateRider(Rider r) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        final String REQ = "UPDATE rider SET riName = ?, armor = ?, hitPoints = ?, "
+                + "stationId = ? WHERE riderId = ?";
+        jdbc.update(REQ, 
+                r.getName(), 
+                r.getArmor(), 
+                r.getHitPoints(), 
+                r.getStationId(), 
+                r.getRiderId());
     }
 
     @Override
+    @Transactional
     public void deleteRider(Rider r) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        final String REQ = "DELETE FROM rider WHERE riderId = ?";
+        jdbc.update(REQ, r.getRiderId());
     }
     
     public static final class RiderMapper implements RowMapper<Rider> {
