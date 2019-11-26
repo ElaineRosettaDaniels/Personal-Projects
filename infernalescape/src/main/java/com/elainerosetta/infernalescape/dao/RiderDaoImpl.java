@@ -6,6 +6,7 @@
 package com.elainerosetta.infernalescape.dao;
 
 import com.elainerosetta.infernalescape.dto.Rider;
+import com.elainerosetta.infernalescape.dto.Vehicle;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
@@ -65,6 +66,15 @@ public class RiderDaoImpl implements RiderDao {
         r.setRiderId(newId);
         return r;
     }
+    
+    @Override
+    public void addRiderToVehicle(Rider r, Vehicle v) {
+        final String REQ = "INSERT INTO vehicleRiders(vehicleId, riderId) "
+                + "VALUES (?,?)";
+        jdbc.update(REQ, 
+                v.getVehicleId(), 
+                r.getRiderId());
+    }
 
     @Override
     @Transactional
@@ -85,7 +95,7 @@ public class RiderDaoImpl implements RiderDao {
         final String REQ = "DELETE FROM rider WHERE riderId = ?";
         jdbc.update(REQ, r.getRiderId());
     }
-    
+
     public static final class RiderMapper implements RowMapper<Rider> {
         
         @Override

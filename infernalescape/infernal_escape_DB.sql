@@ -44,7 +44,7 @@ CREATE TABLE rider (
     armor INT NOT NULL,
     hitPoints INT NOT NULL,
     stationId INT,
-    FOREIGN KEY (stationId) REFERENCES station (stationId)
+    CONSTRAINT fk_station_rider FOREIGN KEY (stationId) REFERENCES station (stationId)
 );
 
 DROP TABLE IF EXISTS vehicleRiders;

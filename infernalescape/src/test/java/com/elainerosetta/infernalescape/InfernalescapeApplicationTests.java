@@ -89,6 +89,42 @@ class InfernalescapeApplicationTests {
     }
     
     @Test
+    public void addAndGetStationTest() {
+        Station s = new Station();
+        s.setName("Harpoon Flinger");
+        s.setArmorBonus(3);
+        s.setStAction("Harpoon");
+        s.setCrewed(false);
+        s = stDao.addStation(s);
+        
+        Station fromDao = stDao.getStationById(s.getStationId());
+        
+        assertEquals(s, fromDao);
+    }
+    
+    @Test
+    public void addAndGetRiderTest() {
+        Station s = new Station();
+        s.setName("Harpoon Flinger");
+        s.setArmorBonus(3);
+        s.setStAction("Harpoon");
+        s.setCrewed(false);
+        s = stDao.addStation(s);
+        
+        Rider r = new Rider();
+        r.setName("Rider");
+        r.setArmor(15);
+        r.setHitPoints(30);
+        r.setStationId(s.getStationId());
+        s.setCrewed(true);
+        r = riDao.addRider(r);
+        
+        Rider fromDao = riDao.getRiderById(r.getRiderId());
+        
+        assertEquals(r, fromDao);
+    }
+    
+    @Test
     public void getAllVehiclesTest() {
         Vehicle v1 = new Vehicle();
         v1.setVeName("Player1");
@@ -155,5 +191,34 @@ class InfernalescapeApplicationTests {
         
     }
     
-    
+    @Test
+    public void deleteVehicleTest() {
+        Vehicle v = new Vehicle();
+        v.setVeName("Player");
+        v.setVeType("Tormentor");
+        v.setArmor(21);
+        v.setSpeed(100);
+        v.setHitPoints(60);
+        v.setDamThres(10);
+        v.setMisThres(20);
+        v.setPosition(0);
+        v.setIchorBoosted(false);
+        v.setIchorUses(3);
+        v.setMaxRiders(4);
+        v = veDao.addVehicle(v);
+        
+        Station s = new Station();
+        s.setName("Harpoon Flinger");
+        s.setArmorBonus(3);
+        s.setStAction("Harpoon");
+        s.setCrewed(false);
+        s = stDao.addStation(s);
+        
+        Rider r = new Rider();
+        r.setName("Rider");
+        r.setArmor(15);
+        r.setHitPoints(30);
+        
+        
+    }
 }
