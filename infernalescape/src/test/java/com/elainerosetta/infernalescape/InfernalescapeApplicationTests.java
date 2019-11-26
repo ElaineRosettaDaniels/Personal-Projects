@@ -354,6 +354,42 @@ class InfernalescapeApplicationTests {
     
     @Test
     public void deleteRiderTest() {
+        Vehicle v = new Vehicle();
+        v.setVeName("Player");
+        v.setVeType("Tormentor");
+        v.setArmor(21);
+        v.setSpeed(100);
+        v.setHitPoints(60);
+        v.setDamThres(10);
+        v.setMisThres(20);
+        v.setPosition(0);
+        v.setIchorBoosted(false);
+        v.setIchorUses(3);
+        v.setMaxRiders(4);
+        v = veDao.addVehicle(v);
         
+        Station s = new Station();
+        s.setName("Harpoon Flinger");
+        s.setArmorBonus(3);
+        s.setStAction("Harpoon");
+        s.setCrewed(false);
+        s = stDao.addStation(s);
+        
+        Rider r = new Rider();
+        r.setName("Rider");
+        r.setArmor(15);
+        r.setHitPoints(30);
+        r = riDao.addRider(r);
+        
+        riDao.addRiderToStation(r, s);
+        riDao.addRiderToVehicle(r, v);
+        
+        Rider fromDao = riDao.getRiderById(r.getRiderId());
+        assertEquals(r, fromDao);
+        
+        riDao.deleteRider(r);
+        
+        fromDao = riDao.getRiderById(r.getRiderId());
+        assertNull(fromDao);
     }
 }

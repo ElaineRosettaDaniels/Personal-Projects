@@ -102,8 +102,16 @@ public class RiderDaoImpl implements RiderDao {
     @Override
     @Transactional
     public void deleteRider(Rider r) {
-        final String REQ = "DELETE FROM rider WHERE riderId = ?";
-        jdbc.update(REQ, r.getRiderId());
+        final String DELETE_VR = "DELETE vr.* FROM vehicleRiders vr "
+                + "WHERE riderId = ?";
+        jdbc.update(DELETE_VR, r.getRiderId());
+        
+        final String DELETE_SR = "DELETE sr.* FROM stationRider sr "
+                + "WHERE riderId = ?";
+        jdbc.update(DELETE_SR, r.getRiderId());
+        
+        final String DELETE_R = "DELETE FROM rider WHERE riderId = ?";
+        jdbc.update(DELETE_R, r.getRiderId());
     }
 
     
