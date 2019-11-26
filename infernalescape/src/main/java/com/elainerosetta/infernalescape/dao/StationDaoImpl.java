@@ -97,6 +97,10 @@ public class StationDaoImpl implements StationDao {
                 + "WHERE stationId = ?";
         jdbc.update(DELETE_VS, s.getStationId());
         
+        final String DELETE_SR = "DELETE sr.* FROM stationRider sr "
+                + "WHERE stationId = ?";
+        jdbc.update(DELETE_SR, s.getStationId());
+        
         final String DELETE_S = "DELETE from station WHERE stationId = ?";
         jdbc.update(DELETE_S, s.getStationId());
     }

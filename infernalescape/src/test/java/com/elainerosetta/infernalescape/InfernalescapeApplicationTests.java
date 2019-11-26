@@ -155,6 +155,50 @@ class InfernalescapeApplicationTests {
     }
     
     @Test
+    public void getAllStationsTest() {
+        Station s1 = new Station();
+        s1.setName("Harpoon Flinger");
+        s1.setArmorBonus(3);
+        s1.setStAction("Harpoon");
+        s1.setCrewed(false);
+        s1 = stDao.addStation(s1);
+        
+        Station s2 = new Station();
+        s2.setName("Harpoon Flinger");
+        s2.setArmorBonus(3);
+        s2.setStAction("Harpoon");
+        s2.setCrewed(false);
+        s2 = stDao.addStation(s2);
+        
+        List<Station> allS = stDao.getAllStations();
+        
+        assertEquals(2, allS.size());
+        assertTrue(allS.contains(s1));
+        assertTrue(allS.contains(s2));
+    }
+    
+    @Test
+    public void getAllRidersTest() {
+        Rider r1 = new Rider();
+        r1.setName("Rider");
+        r1.setArmor(15);
+        r1.setHitPoints(30);
+        r1 = riDao.addRider(r1);
+        
+        Rider r2 = new Rider();
+        r2.setName("Rider");
+        r2.setArmor(15);
+        r2.setHitPoints(30);
+        r2 = riDao.addRider(r2);
+        
+        List<Rider> allR = riDao.getAllRiders();
+        
+        assertEquals(2, allR.size());
+        assertTrue(allR.contains(r1));
+        assertTrue(allR.contains(r2));
+    }
+    
+    @Test
     public void updateVehicleTest() {
         Vehicle v = new Vehicle();
         v.setVeName("Player");
@@ -184,6 +228,49 @@ class InfernalescapeApplicationTests {
     }
     
     @Test
+    public void updateStationTest() {
+        Station s = new Station();
+        s.setName("Harpoon Flinger");
+        s.setArmorBonus(3);
+        s.setStAction("Harpoon");
+        s.setCrewed(false);
+        s = stDao.addStation(s);
+        
+        Station fromDao = stDao.getStationById(s.getStationId());
+        assertEquals(s, fromDao);
+        
+        s.setCrewed(true);
+        stDao.updateStation(s);
+        
+        assertNotEquals(s, fromDao);
+        
+        fromDao = stDao.getStationById(s.getStationId());
+        
+        assertEquals(s, fromDao);
+        
+    }
+    
+    @Test
+    public void updateRiderTest() {
+        Rider r = new Rider();
+        r.setName("Rider");
+        r.setArmor(15);
+        r.setHitPoints(30);
+        r = riDao.addRider(r);
+        
+        Rider fromDao = riDao.getRiderById(r.getRiderId());
+        assertEquals(fromDao, r);
+        
+        r.setHitPoints(20);
+        riDao.updateRider(r);
+        
+        assertNotEquals(r, fromDao);
+        
+        fromDao = riDao.getRiderById(r.getRiderId());
+        assertEquals(fromDao, r);
+    }
+    
+    @Test
     public void deleteVehicleTest() {
         Vehicle v = new Vehicle();
         v.setVeName("Player");
@@ -210,7 +297,58 @@ class InfernalescapeApplicationTests {
         r.setName("Rider");
         r.setArmor(15);
         r.setHitPoints(30);
+        r = riDao.addRider(r);
         
+        riDao.addRiderToVehicle(r, v);
+        stDao.addStationToVehicle(s, v);
         
+        Vehicle fromDao = veDao.getVehicleById(v.getVehicleId());
+        assertEquals(v, fromDao);
+        
+        veDao.deleteVehicle(v.getVehicleId());
+        
+        fromDao = veDao.getVehicleById(v.getVehicleId());
+        assertNull(fromDao);
+    }
+    
+    @Test
+    public void deleteStationTest() {
+        Vehicle v = new Vehicle();
+        v.setVeName("Player");
+        v.setVeType("Tormentor");
+        v.setArmor(21);
+        v.setSpeed(100);
+        v.setHitPoints(60);
+        v.setDamThres(10);
+        v.setMisThres(20);
+        v.setPosition(0);
+        v.setIchorBoosted(false);
+        v.setIchorUses(3);
+        v.setMaxRiders(4);
+        v = veDao.addVehicle(v);
+        
+        Station s = new Station();
+        s.setName("Harpoon Flinger");
+        s.setArmorBonus(3);
+        s.setStAction("Harpoon");
+        s.setCrewed(false);
+        s = stDao.addStation(s);
+        
+        Rider r = new Rider();
+        r.setName("Rider");
+        r.setArmor(15);
+        r.setHitPoints(30);
+        r = riDao.addRider(r);
+        
+        stDao.addStationToVehicle(s, v);
+        riDao.addRiderToStation(r, s);
+        
+        Station fromDao = stDao.getStationById(s.getStationId());
+        assertEquals(s, fromDao);
+        
+        stDao.deleteStation(s);
+        
+        fromDao = stDao.getStationById(s.getStationId());
+        assertNull(fromDao);
     }
 }
