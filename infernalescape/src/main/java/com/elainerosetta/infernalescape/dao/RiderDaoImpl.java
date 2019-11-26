@@ -6,6 +6,7 @@
 package com.elainerosetta.infernalescape.dao;
 
 import com.elainerosetta.infernalescape.dto.Rider;
+import com.elainerosetta.infernalescape.dto.Station;
 import com.elainerosetta.infernalescape.dto.Vehicle;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -54,13 +55,12 @@ public class RiderDaoImpl implements RiderDao {
     @Override
     @Transactional
     public Rider addRider(Rider r) {
-        final String REQ = "INSERT INTO rider(riName, armor, hitPoints, stationId) "
-                + "VALUES(?,?,?,?)";
+        final String REQ = "INSERT INTO rider(riName, armor, hitPoints) "
+                + "VALUES(?,?,?)";
         jdbc.update(REQ, 
                 r.getName(), 
                 r.getArmor(), 
-                r.getHitPoints(), 
-                r.getStationId());
+                r.getHitPoints());
         
         int newId = jdbc.queryForObject("SELECT LAST_INSERT_ID()", Integer.class);
         r.setRiderId(newId);
@@ -68,6 +68,7 @@ public class RiderDaoImpl implements RiderDao {
     }
     
     @Override
+    @Transactional
     public void addRiderToVehicle(Rider r, Vehicle v) {
         final String REQ = "INSERT INTO vehicleRiders(vehicleId, riderId) "
                 + "VALUES (?,?)";
@@ -75,17 +76,26 @@ public class RiderDaoImpl implements RiderDao {
                 v.getVehicleId(), 
                 r.getRiderId());
     }
+    
+    @Override
+    @Transactional
+    public void addRiderToStation(Rider r, Station s) {
+        final String REQ = "INSERT INTO stationRider(stationId, riderId) "
+                + "VALUES(?,?)";
+        jdbc.update(REQ, 
+                s.getStationId(), 
+                r.getRiderId());
+    }
 
     @Override
     @Transactional
     public void updateRider(Rider r) {
-        final String REQ = "UPDATE rider SET riName = ?, armor = ?, hitPoints = ?, "
-                + "stationId = ? WHERE riderId = ?";
+        final String REQ = "UPDATE rider SET riName = ?, armor = ?, hitPoints = ? "
+                + "WHERE riderId = ?";
         jdbc.update(REQ, 
                 r.getName(), 
                 r.getArmor(), 
                 r.getHitPoints(), 
-                r.getStationId(), 
                 r.getRiderId());
     }
 
@@ -96,6 +106,8 @@ public class RiderDaoImpl implements RiderDao {
         jdbc.update(REQ, r.getRiderId());
     }
 
+    
+
     public static final class RiderMapper implements RowMapper<Rider> {
         
         @Override
@@ -105,7 +117,6 @@ public class RiderDaoImpl implements RiderDao {
             r.setName(rs.getString("riName"));
             r.setArmor(rs.getInt("armor"));
             r.setHitPoints(rs.getInt("hitPoints"));
-            r.setStationId(rs.getInt("stationId"));
             
             return r;
         }

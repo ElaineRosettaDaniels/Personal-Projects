@@ -17,7 +17,6 @@ public class Rider {
     private String name;
     private int armor;
     private int hitPoints;
-    private int stationId;
 
     public int getRiderId() {
         return riderId;
@@ -51,14 +50,6 @@ public class Rider {
         this.hitPoints = hitPoints;
     }
 
-    public int getStationId() {
-        return stationId;
-    }
-
-    public void setStationId(int stationId) {
-        this.stationId = stationId;
-    }
-
     @Override
     public int hashCode() {
         int hash = 7;
@@ -66,7 +57,6 @@ public class Rider {
         hash = 97 * hash + Objects.hashCode(this.name);
         hash = 97 * hash + this.armor;
         hash = 97 * hash + this.hitPoints;
-        hash = 97 * hash + this.stationId;
         return hash;
     }
 
@@ -91,9 +81,7 @@ public class Rider {
         if (this.hitPoints != other.hitPoints) {
             return false;
         }
-        if (this.stationId != other.stationId) {
-            return false;
-        }
+
         if (!Objects.equals(this.name, other.name)) {
             return false;
         }
@@ -107,7 +95,6 @@ public class Rider {
                 + ", name=" + name 
                 + ", armor=" + armor 
                 + ", hitPoints=" + hitPoints 
-                + ", stationId=" + stationId 
                 + '}';
     }
     

@@ -104,19 +104,11 @@ class InfernalescapeApplicationTests {
     
     @Test
     public void addAndGetRiderTest() {
-        Station s = new Station();
-        s.setName("Harpoon Flinger");
-        s.setArmorBonus(3);
-        s.setStAction("Harpoon");
-        s.setCrewed(false);
-        s = stDao.addStation(s);
         
         Rider r = new Rider();
         r.setName("Rider");
         r.setArmor(15);
         r.setHitPoints(30);
-        r.setStationId(s.getStationId());
-        s.setCrewed(true);
         r = riDao.addRider(r);
         
         Rider fromDao = riDao.getRiderById(r.getRiderId());

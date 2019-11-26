@@ -42,9 +42,7 @@ CREATE TABLE rider (
 	riderId INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
     riName VARCHAR(30) NOT NULL,
     armor INT NOT NULL,
-    hitPoints INT NOT NULL,
-    stationId INT,
-    CONSTRAINT fk_station_rider FOREIGN KEY (stationId) REFERENCES station (stationId)
+    hitPoints INT NOT NULL
 );
 
 DROP TABLE IF EXISTS vehicleRiders;
@@ -53,5 +51,14 @@ CREATE TABLE vehicleRiders (
     riderId INT NOT NULL,
     PRIMARY KEY (vehicleId, riderId),
     FOREIGN KEY (vehicleId) REFERENCES vehicle (vehicleId),
+    FOREIGN KEY (riderId) REFERENCES rider (riderId)
+);
+
+DROP TABLE IF EXISTS stationRider;
+CREATE TABLE stationRider (
+	stationId INT NOT NULL,
+    riderId INT NOT NULL,
+    PRIMARY KEY (stationId, riderId),
+    FOREIGN KEY (stationId) REFERENCES station (stationId),
     FOREIGN KEY (riderId) REFERENCES rider (riderId)
 );
