@@ -351,4 +351,9 @@ class InfernalescapeApplicationTests {
         fromDao = stDao.getStationById(s.getStationId());
         assertNull(fromDao);
     }
+    
+    @Test
+    public void deleteRiderTest() {
+        
+    }
 }
