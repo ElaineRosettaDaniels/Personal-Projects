@@ -11,7 +11,9 @@ import com.elainerosetta.infernalescape.dao.VehicleDao;
 import com.elainerosetta.infernalescape.dto.Rider;
 import com.elainerosetta.infernalescape.dto.Station;
 import com.elainerosetta.infernalescape.dto.Vehicle;
+import static java.lang.Math.random;
 import java.util.List;
+import java.util.Random;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -30,6 +32,24 @@ public class ServiceLayerImpl implements ServiceLayer {
     
     @Autowired
     RiderDao riDao;
+    
+    
+
+    public ServiceLayerImpl() {}
+    
+    public Random random = new Random();
+    
+    @Override
+    public int rollDie(int die) {
+        return random.nextInt(die) + 1;
+    }
+    
+    @Override
+    public void actHarpoon(int atkVId, int tarVId) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+    
+    // VehicleDao passthru
     
     @Override
     public Vehicle getVehicleById(int vehicleId) {
@@ -55,6 +75,8 @@ public class ServiceLayerImpl implements ServiceLayer {
     public void deleteVehicle(int vehicleId) {
         veDao.deleteVehicle(vehicleId);
     }
+    
+    // StationDao passthru
 
     @Override
     public Station getStationById(int stationId) {
@@ -90,6 +112,8 @@ public class ServiceLayerImpl implements ServiceLayer {
     public void deleteStation(Station s) {
         stDao.deleteStation(s);
     }
+    
+    // RiderDao passthru
 
     @Override
     public Rider getRiderById(int riderId) {
@@ -130,5 +154,11 @@ public class ServiceLayerImpl implements ServiceLayer {
     public void deleteRider(Rider r) {
         riDao.deleteRider(r);
     }
+
+    
+
+    
+
+    
     
 }

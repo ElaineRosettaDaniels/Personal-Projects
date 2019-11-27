@@ -18,10 +18,11 @@ public class Vehicle {
     private String veType;
     private int armor;
     private int speed;
+    private int dexBonus;
     private int hitPoints;
     private int damThres;
     private int misThres;
-    private int position;
+    private int totalDist;
     private boolean ichorBoosted;
     private int ichorUses;
     private int maxRiders;
@@ -65,6 +66,14 @@ public class Vehicle {
         return speed;
     }
 
+    public int getDexBonus() {
+        return dexBonus;
+    }
+
+    public void setDexBonus(int dexBonus) {
+        this.dexBonus = dexBonus;
+    }
+
     public void setSpeed(int speed) {
         this.speed = speed;
     }
@@ -93,12 +102,12 @@ public class Vehicle {
         this.misThres = misThres;
     }
 
-    public int getPosition() {
-        return position;
+    public int getTotalDist() {
+        return totalDist;
     }
 
-    public void setPosition(int position) {
-        this.position = position;
+    public void setTotalDist(int totalDist) {
+        this.totalDist = totalDist;
     }
 
     public boolean isIchorBoosted() {
@@ -133,10 +142,11 @@ public class Vehicle {
         hash = 41 * hash + Objects.hashCode(this.veType);
         hash = 41 * hash + this.armor;
         hash = 41 * hash + this.speed;
+        hash = 41 * hash + this.dexBonus;
         hash = 41 * hash + this.hitPoints;
         hash = 41 * hash + this.damThres;
         hash = 41 * hash + this.misThres;
-        hash = 41 * hash + this.position;
+        hash = 41 * hash + this.totalDist;
         hash = 41 * hash + (this.ichorBoosted ? 1 : 0);
         hash = 41 * hash + this.ichorUses;
         hash = 41 * hash + this.maxRiders;
@@ -164,6 +174,9 @@ public class Vehicle {
         if (this.speed != other.speed) {
             return false;
         }
+        if (this.dexBonus != other.dexBonus) {
+            return false;
+        }
         if (this.hitPoints != other.hitPoints) {
             return false;
         }
@@ -173,7 +186,7 @@ public class Vehicle {
         if (this.misThres != other.misThres) {
             return false;
         }
-        if (this.position != other.position) {
+        if (this.totalDist != other.totalDist) {
             return false;
         }
         if (this.ichorBoosted != other.ichorBoosted) {
@@ -204,10 +217,11 @@ public class Vehicle {
                 ", veType=" + veType + 
                 ", armor=" + armor + 
                 ", speed=" + speed + 
+                ", dexBonus=" + dexBonus +
                 ", hitPoints=" + hitPoints + 
                 ", damThres=" + damThres + 
                 ", misThres=" + misThres + 
-                ", position=" + position + 
+                ", totalDist=" + totalDist + 
                 ", ichorBoosted=" + ichorBoosted + 
                 ", ichorUses=" + ichorUses + 
                 ", maxRiders=" + maxRiders + 

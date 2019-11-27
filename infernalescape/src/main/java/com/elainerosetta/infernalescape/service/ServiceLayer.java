@@ -16,7 +16,8 @@ import java.util.List;
  */
 public interface ServiceLayer {
 
-    
+    int rollDie(int die);
+    void actHarpoon(int atkVId, int tarVId);
     
     // VehicleDao passthru
     Vehicle getVehicleById(int vehicleId);

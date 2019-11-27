@@ -10,10 +10,11 @@ CREATE TABLE vehicle (
     veType VARCHAR(30) NOT NULL,
     armor INT NOT NULL,
     speed INT NOT NULL,
+    dexBonus INT NOT NULL,
     hitPoints INT NOT NULL,
     damThres INT NOT NULL,
     misThres INT NOT NULL,
-    position INT NOT NULL,
+    totalDist INT NOT NULL,
     ichorBoosted BOOL NOT NULL,
     ichorUses INT NOT NULL,
     maxRiders INT NOT NULL

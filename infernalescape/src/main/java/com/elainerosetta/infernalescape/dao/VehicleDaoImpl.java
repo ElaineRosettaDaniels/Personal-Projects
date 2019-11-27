@@ -46,18 +46,19 @@ public class VehicleDaoImpl implements VehicleDao {
     @Transactional
     public Vehicle addVehicle(Vehicle v) {
         final String REQ = "INSERT INTO vehicle(veName, veType, armor, "
-                + "speed, hitPoints, damThres, misThres, position, ichorBoosted,"
+                + "speed, dexBonus, hitPoints, damThres, misThres, totalDist, ichorBoosted,"
                 + "ichorUses, maxRiders)"
-                + "VALUES(?,?,?,?,?,?,?,?,?,?,?)";
+                + "VALUES(?,?,?,?,?,?,?,?,?,?,?,?)";
         jdbc.update(REQ, 
                 v.getVeName(),
                 v.getVeType(),
                 v.getArmor(),
                 v.getSpeed(),
+                v.getDexBonus(),
                 v.getHitPoints(),
                 v.getDamThres(),
                 v.getMisThres(),
-                v.getPosition(),
+                v.getTotalDist(),
                 v.isIchorBoosted(),
                 v.getIchorUses(),
                 v.getMaxRiders());
@@ -71,18 +72,19 @@ public class VehicleDaoImpl implements VehicleDao {
     @Transactional
     public void updateVehicle(Vehicle v) {
         final String REQ = "UPDATE vehicle SET veName = ?, veType = ?, armor = ?,"
-                + " speed = ?, hitPoints = ?, damThres = ?, misThres = ?, "
-                + "position = ?, ichorBoosted = ?, ichorUses = ?, maxRiders = ? "
+                + " speed = ?, dexBonus = ?, hitPoints = ?, damThres = ?, misThres = ?, "
+                + "totalDist = ?, ichorBoosted = ?, ichorUses = ?, maxRiders = ? "
                 + "WHERE vehicleId = ?";
         jdbc.update(REQ,
                 v.getVeName(), 
                 v.getVeType(), 
                 v.getArmor(), 
-                v.getSpeed(), 
+                v.getSpeed(),
+                v.getDexBonus(),
                 v.getHitPoints(), 
                 v.getDamThres(), 
                 v.getMisThres(), 
-                v.getPosition(), 
+                v.getTotalDist(), 
                 v.isIchorBoosted(), 
                 v.getIchorUses(), 
                 v.getMaxRiders(), 
@@ -112,10 +114,11 @@ public class VehicleDaoImpl implements VehicleDao {
             v.setVeType(rs.getString("veType"));
             v.setArmor(rs.getInt("armor"));
             v.setSpeed(rs.getInt("speed"));
+            v.setDexBonus(rs.getInt("dexBonus"));
             v.setHitPoints(rs.getInt("hitPoints"));
             v.setDamThres(rs.getInt("damThres"));
             v.setMisThres(rs.getInt("misThres"));
-            v.setPosition(rs.getInt("position"));
+            v.setTotalDist(rs.getInt("totalDist"));
             v.setIchorBoosted(rs.getBoolean("ichorBoosted"));
             v.setIchorUses(rs.getInt("ichorUses"));
             v.setMaxRiders(rs.getInt("maxRiders"));
