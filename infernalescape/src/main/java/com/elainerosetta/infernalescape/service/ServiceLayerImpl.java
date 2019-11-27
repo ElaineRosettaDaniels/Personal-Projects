@@ -40,13 +40,38 @@ public class ServiceLayerImpl implements ServiceLayer {
     public Random random = new Random();
     
     @Override
-    public int rollDie(int die) {
-        return random.nextInt(die) + 1;
+    public int rollDie(int numRolls, int die) {
+        int total = 0;
+        for (int i = 0; i < numRolls; i++) {
+            total += random.nextInt(die) + 1;
+        }
+        return total;
+    }
+    
+    // Harpoon Flinger attack method
+    @Override
+    public int atkHarpoon(Vehicle atk, Vehicle tar) {
+        // Distance between atkV and tarV:
+        int distBtwn = Math.abs(tar.getTotalDist() - atk.getTotalDist());
+        int hitRoll = 0;
+        int damage = 0;
+        // if atkV is in range of tarV, roll to hit:
+        if (distBtwn <= 120) {
+            hitRoll = rollDie(1, 20) + 5 + atk.getDexBonus(); // 5 is harpoon's base hit bonus
+        }
+        // if hitRoll can hit target's AC, roll damage (2d8 + dex):
+        if (hitRoll >= tar.getArmor()) {
+            damage = rollDie(2, 8) + atk.getDexBonus();
+        }
+        return damage;
     }
     
     @Override
-    public void actHarpoon(int atkVId, int tarVId) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public void checkDamVsThres(int dam, Vehicle tar) {
+        if (dam >= tar.getDamThres()) {
+            tar.setHitPoints(tar.getHitPoints() - dam);
+        }
+        veDao.updateVehicle(tar);
     }
     
     // VehicleDao passthru
