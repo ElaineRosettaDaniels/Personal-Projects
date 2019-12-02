@@ -71,10 +71,11 @@ public class ServiceLayerImpl implements ServiceLayer {
         int distBtwn = Math.abs(tar.getTotalDist() - atk.getTotalDist());
         int saveRoll = 0;
         int damage = 0;
+        int dC = 13;
         if (distBtwn <= 5) {
             saveRoll = rollDie(1, 20) + tar.getDexBonus();
         }
-        if (saveRoll < 13) {
+        if (saveRoll < dC) {
             damage = rollDie(2, 10) + atk.getDexBonus();
         }
         return damage;
@@ -104,6 +105,42 @@ public class ServiceLayerImpl implements ServiceLayer {
         }
         if (hitRoll >= tar.getArmor()) {
             damage = rollDie(6, 6) + atk.getStrBonus();
+        }
+        return damage;
+    }
+    
+    @Override
+    public int atkAcid(Vehicle atk, Vehicle tar) {
+        int distBtwn = Math.abs(tar.getTotalDist() - atk.getTotalDist());
+        int saveRoll = 0;
+        int damage = 0;
+        int dC = 12;
+        if (distBtwn <= 30) {
+            saveRoll = rollDie(1, 20) + tar.getDexBonus();
+        }
+        if (saveRoll < dC) {
+            damage = rollDie(9, 8);
+        }
+        if (saveRoll >= dC) {
+            damage = rollDie(9, 8) / 2;
+        }
+        return damage;
+    }
+    
+    @Override
+    public int atkFlame(Vehicle atk, Vehicle tar) {
+        int distBtwn = Math.abs(tar.getTotalDist() - atk.getTotalDist());
+        int saveRoll = 0;
+        int damage = 0;
+        int dC = 15;
+        if (distBtwn <= 60) {
+            saveRoll = rollDie(1, 20) + tar.getDexBonus();
+        }
+        if (saveRoll < dC) {
+            damage = rollDie(4, 8);
+        }
+        if (saveRoll >= dC) {
+            damage = rollDie(4, 8) / 2;
         }
         return damage;
     }

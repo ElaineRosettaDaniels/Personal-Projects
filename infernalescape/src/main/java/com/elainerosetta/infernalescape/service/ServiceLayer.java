@@ -21,6 +21,8 @@ public interface ServiceLayer {
     int atkScythes(Vehicle atk, Vehicle tar);
     int atkWreckBall(Vehicle atk, Vehicle tar);
     int atkChomper(Vehicle atk, Vehicle tar);
+    int atkAcid(Vehicle atk, Vehicle tar);
+    int atkFlame(Vehicle atk, Vehicle tar);
     void checkDamVsThresAndDeal(int dam, Vehicle tar);
     
     // VehicleDao passthru
