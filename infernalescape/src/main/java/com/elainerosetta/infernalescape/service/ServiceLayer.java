@@ -18,7 +18,10 @@ public interface ServiceLayer {
 
     int rollDie(int numRolls, int die);
     int atkHarpoon(Vehicle atk, Vehicle tar);
-    void checkDamVsThres(int dam, Vehicle tar);
+    int atkScythes(Vehicle atk, Vehicle tar);
+    int atkWreckBall(Vehicle atk, Vehicle tar);
+    int atkChomper(Vehicle atk, Vehicle tar);
+    void checkDamVsThresAndDeal(int dam, Vehicle tar);
     
     // VehicleDao passthru
     Vehicle getVehicleById(int vehicleId);

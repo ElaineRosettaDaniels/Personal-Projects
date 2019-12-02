@@ -11,6 +11,7 @@ CREATE TABLE vehicle (
     armor INT NOT NULL,
     speed INT NOT NULL,
     dexBonus INT NOT NULL,
+    strBonus INT NOT NULL,
     hitPoints INT NOT NULL,
     damThres INT NOT NULL,
     misThres INT NOT NULL,
@@ -25,7 +26,7 @@ CREATE TABLE station (
 	stationId INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
     stName VARCHAR(30) NOT NULL,
     armorBonus INT NOT NULL,
-    stAction TEXT NOT NULL,
+    stAction VARCHAR(40) NOT NULL,
     crewed BOOL NOT NULL
 );
 

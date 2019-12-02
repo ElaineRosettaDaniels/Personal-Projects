@@ -23,8 +23,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 class InfernalescapeApplicationTests {
 
     @Test
-    void contextLoads() {
-    }
+    void contextLoads() {}
 
     @Autowired
     VehicleDao veDao;
@@ -36,13 +35,10 @@ class InfernalescapeApplicationTests {
     RiderDao riDao;
     
     @BeforeClass
-    public static void setUpClass() {
-    }
+    public static void setUpClass() {}
     
     @AfterClass
-    public static void tearDownClass() {
-        
-    }
+    public static void tearDownClass() {}
     
     @BeforeEach
     public void setup() {
@@ -63,8 +59,7 @@ class InfernalescapeApplicationTests {
     }
     
     @AfterEach
-    public void tearDown() {
-    }
+    public void tearDown() {}
     
     @Test
     public void addAndGetVehicleTest() {
@@ -74,6 +69,7 @@ class InfernalescapeApplicationTests {
         v.setArmor(21);
         v.setSpeed(100);
         v.setDexBonus(2);
+        v.setStrBonus(3);
         v.setHitPoints(60);
         v.setDamThres(10);
         v.setMisThres(20);
@@ -125,6 +121,7 @@ class InfernalescapeApplicationTests {
         v1.setArmor(21);
         v1.setSpeed(100);
         v1.setDexBonus(2);
+        v1.setStrBonus(3);
         v1.setHitPoints(60);
         v1.setDamThres(10);
         v1.setMisThres(20);
@@ -140,6 +137,7 @@ class InfernalescapeApplicationTests {
         v2.setArmor(21);
         v2.setSpeed(100);
         v2.setDexBonus(2);
+        v2.setStrBonus(3);
         v2.setHitPoints(60);
         v2.setDamThres(10);
         v2.setMisThres(20);
@@ -209,6 +207,7 @@ class InfernalescapeApplicationTests {
         v.setArmor(21);
         v.setSpeed(100);
         v.setDexBonus(2);
+        v.setStrBonus(3);
         v.setHitPoints(60);
         v.setDamThres(10);
         v.setMisThres(20);
@@ -282,6 +281,7 @@ class InfernalescapeApplicationTests {
         v.setArmor(21);
         v.setSpeed(100);
         v.setDexBonus(2);
+        v.setStrBonus(3);
         v.setHitPoints(60);
         v.setDamThres(10);
         v.setMisThres(20);
@@ -324,6 +324,7 @@ class InfernalescapeApplicationTests {
         v.setArmor(21);
         v.setSpeed(100);
         v.setDexBonus(2);
+        v.setStrBonus(3);
         v.setHitPoints(60);
         v.setDamThres(10);
         v.setMisThres(20);
@@ -366,6 +367,7 @@ class InfernalescapeApplicationTests {
         v.setArmor(21);
         v.setSpeed(100);
         v.setDexBonus(2);
+        v.setStrBonus(3);
         v.setHitPoints(60);
         v.setDamThres(10);
         v.setMisThres(20);

@@ -46,15 +46,16 @@ public class VehicleDaoImpl implements VehicleDao {
     @Transactional
     public Vehicle addVehicle(Vehicle v) {
         final String REQ = "INSERT INTO vehicle(veName, veType, armor, "
-                + "speed, dexBonus, hitPoints, damThres, misThres, totalDist, ichorBoosted,"
+                + "speed, dexBonus, strBonus, hitPoints, damThres, misThres, totalDist, ichorBoosted,"
                 + "ichorUses, maxRiders)"
-                + "VALUES(?,?,?,?,?,?,?,?,?,?,?,?)";
+                + "VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?)";
         jdbc.update(REQ, 
                 v.getVeName(),
                 v.getVeType(),
                 v.getArmor(),
                 v.getSpeed(),
                 v.getDexBonus(),
+                v.getStrBonus(),
                 v.getHitPoints(),
                 v.getDamThres(),
                 v.getMisThres(),
@@ -72,7 +73,7 @@ public class VehicleDaoImpl implements VehicleDao {
     @Transactional
     public void updateVehicle(Vehicle v) {
         final String REQ = "UPDATE vehicle SET veName = ?, veType = ?, armor = ?,"
-                + " speed = ?, dexBonus = ?, hitPoints = ?, damThres = ?, misThres = ?, "
+                + " speed = ?, dexBonus = ?, strBonus = ?, hitPoints = ?, damThres = ?, misThres = ?, "
                 + "totalDist = ?, ichorBoosted = ?, ichorUses = ?, maxRiders = ? "
                 + "WHERE vehicleId = ?";
         jdbc.update(REQ,
@@ -81,6 +82,7 @@ public class VehicleDaoImpl implements VehicleDao {
                 v.getArmor(), 
                 v.getSpeed(),
                 v.getDexBonus(),
+                v.getStrBonus(),
                 v.getHitPoints(), 
                 v.getDamThres(), 
                 v.getMisThres(), 
@@ -115,6 +117,7 @@ public class VehicleDaoImpl implements VehicleDao {
             v.setArmor(rs.getInt("armor"));
             v.setSpeed(rs.getInt("speed"));
             v.setDexBonus(rs.getInt("dexBonus"));
+            v.setStrBonus(rs.getInt("strBonus"));
             v.setHitPoints(rs.getInt("hitPoints"));
             v.setDamThres(rs.getInt("damThres"));
             v.setMisThres(rs.getInt("misThres"));

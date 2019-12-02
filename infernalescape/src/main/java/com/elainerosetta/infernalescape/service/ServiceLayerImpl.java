@@ -11,7 +11,7 @@ import com.elainerosetta.infernalescape.dao.VehicleDao;
 import com.elainerosetta.infernalescape.dto.Rider;
 import com.elainerosetta.infernalescape.dto.Station;
 import com.elainerosetta.infernalescape.dto.Vehicle;
-import static java.lang.Math.random;
+
 import java.util.List;
 import java.util.Random;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -67,7 +67,49 @@ public class ServiceLayerImpl implements ServiceLayer {
     }
     
     @Override
-    public void checkDamVsThres(int dam, Vehicle tar) {
+    public int atkScythes(Vehicle atk, Vehicle tar) {
+        int distBtwn = Math.abs(tar.getTotalDist() - atk.getTotalDist());
+        int saveRoll = 0;
+        int damage = 0;
+        if (distBtwn <= 5) {
+            saveRoll = rollDie(1, 20) + tar.getDexBonus();
+        }
+        if (saveRoll < 13) {
+            damage = rollDie(2, 10) + atk.getDexBonus();
+        }
+        return damage;
+    }
+
+    @Override
+    public int atkWreckBall(Vehicle atk, Vehicle tar) {
+        int distBtwn = Math.abs(tar.getTotalDist() - atk.getTotalDist());
+        int hitRoll = 0;
+        int damage = 0;
+        if (distBtwn <= 15) {
+            hitRoll = rollDie(1, 20) + 5 + atk.getStrBonus();
+        }
+        if (hitRoll >= tar.getArmor()) {
+            damage = rollDie(8, 8) + atk.getStrBonus();
+        }
+        return damage;
+    }
+
+    @Override
+    public int atkChomper(Vehicle atk, Vehicle tar) {
+        int distBtwn = Math.abs(tar.getTotalDist() - atk.getTotalDist());
+        int hitRoll = 0;
+        int damage = 0;
+        if (distBtwn <= 5) {
+            hitRoll = rollDie(1, 20) + 5 + atk.getStrBonus();
+        }
+        if (hitRoll >= tar.getArmor()) {
+            damage = rollDie(6, 6) + atk.getStrBonus();
+        }
+        return damage;
+    }
+    
+    @Override
+    public void checkDamVsThresAndDeal(int dam, Vehicle tar) {
         if (dam >= tar.getDamThres()) {
             tar.setHitPoints(tar.getHitPoints() - dam);
         }
@@ -179,10 +221,6 @@ public class ServiceLayerImpl implements ServiceLayer {
     public void deleteRider(Rider r) {
         riDao.deleteRider(r);
     }
-
-    
-
-    
 
     
     

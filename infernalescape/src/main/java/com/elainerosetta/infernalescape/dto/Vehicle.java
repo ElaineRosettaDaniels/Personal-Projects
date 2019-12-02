@@ -19,6 +19,7 @@ public class Vehicle {
     private int armor;
     private int speed;
     private int dexBonus;
+    private int strBonus;
     private int hitPoints;
     private int damThres;
     private int misThres;
@@ -72,6 +73,14 @@ public class Vehicle {
 
     public void setDexBonus(int dexBonus) {
         this.dexBonus = dexBonus;
+    }
+
+    public int getStrBonus() {
+        return strBonus;
+    }
+
+    public void setStrBonus(int strBonus) {
+        this.strBonus = strBonus;
     }
 
     public void setSpeed(int speed) {
@@ -143,6 +152,7 @@ public class Vehicle {
         hash = 41 * hash + this.armor;
         hash = 41 * hash + this.speed;
         hash = 41 * hash + this.dexBonus;
+        hash = 41 * hash + this.strBonus;
         hash = 41 * hash + this.hitPoints;
         hash = 41 * hash + this.damThres;
         hash = 41 * hash + this.misThres;
@@ -175,6 +185,9 @@ public class Vehicle {
             return false;
         }
         if (this.dexBonus != other.dexBonus) {
+            return false;
+        }
+        if (this.strBonus != other.strBonus) {
             return false;
         }
         if (this.hitPoints != other.hitPoints) {
@@ -218,6 +231,7 @@ public class Vehicle {
                 ", armor=" + armor + 
                 ", speed=" + speed + 
                 ", dexBonus=" + dexBonus +
+                ", strBonus=" + strBonus +
                 ", hitPoints=" + hitPoints + 
                 ", damThres=" + damThres + 
                 ", misThres=" + misThres + 
