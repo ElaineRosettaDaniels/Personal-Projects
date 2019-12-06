@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Vending Machine</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link href="css/homeVendMach.css" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <header></header>
+</head>
+<body>
+    <h1>Vending Machine</h1>
+    <hr />
+    
+        <div class="container container-fluid">
+            <div class="row">
+                <div class="col-md-9" id="left">
+                    <div class="row" id="row1">
+                        <div class="col" id="block1">
+
+                        </div>
+                        <div class="col" id="block2">
+                            
+                        </div>
+                        <div class="col" id="block3">
+                            
+                        </div>
+                    </div>
+                    <div class="row" id="row2">
+                        <div class="col" id="block4">
+                        
+                        </div>
+                        <div class="col" id="block5">
+                        
+                        </div>
+                        <div class="col" id="block6">
+                        
+                        </div>
+                    </div>
+                    <div class="row" id="row3">
+                        <div class="col" id="block7">
+                        
+                        </div>
+                        <div class="col" id="block8">
+                        
+                        </div>
+                        <div class="col" id="block9">
+                        
+                        </div>
+                    </div>
+                    <div class="row" id="row4">
+                        <div class="col" id="block10">
+                        
+                        </div>
+                        <div class="col" id="block11">
+                        
+                        </div>
+                        <div class="col" id="block12">
+                        
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3" id="right">
+                    <div class="row">
+                        <div class="col">
+                            <div id="moneyInBox">
+                                <h3>Total $ In</h3> <br/>
+                                <input type="text" class="outputbox" id="currMoney" placeholder="$0.00" readonly /> <br />
+                                <button class="btn btn-primary" id="addDollar">Add Dollar</button>
+                                <button class="btn btn-primary" id="addQuarter">Add Quarter</button><br />
+                                <button class="btn btn-primary" id="addDime">Add Dime</button>
+                                <button class="btn btn-primary" id="addNickel">Add Nickel</button>
+                                <hr />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                            <div id="purchaseBox" >
+                                <h3>Messages</h3>
+                                <input type="text" class="outputbox" id="messages" readonly /> <br/>
+                                <label for="itemSelect" class="control-label">Item: </label> 
+                                <input type="text" class="form-control" id="itemSelect" />
+                                <button class="btn btn-primary" id="purchaseButton">Make Purchase</button>
+                                <hr/>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                            <div id="changeBox">
+                                <h3>Change</h3> <br/>
+                                <textarea class="outputbox" id="change" readonly></textarea> <br/>
+                                <button class="btn btn-primary" id="changeButton">Change Return</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+    <br/>
+    <footer>
+
+    </footer>
+        
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"
+            integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+            crossorigin="anonymous"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<script src="js/homeVendMach.js"></script>
+
+</body>
+</html>
