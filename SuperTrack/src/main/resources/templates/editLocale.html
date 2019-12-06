@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+		<title>Edit Locale</title>
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+        <link href="../home.css" rel="stylesheet" th:href="@{../home.css}">
+    </head>
+	
+	<body>
+		<header>
+            <h1>Edit Locale</h1>
+            <hr/>
+		</header>
+		
+		<nav>
+            <div class="row m-4 border border-dark">
+                <div class="col text-center m-2">
+                    <a href="/" class="btn badge-pill">Home</a>
+                </div>
+                <div class="col text-center m-2">
+                    <a href="superhumans" class="btn badge-pill">Superhumans</a>
+                </div>
+                <div class="col text-center m-2">
+                    <a href="organizations" class="btn badge-pill">Organizations</a>
+                </div>
+                <div class="col text-center m-2">
+                    <a href="locales" class="btn badge-pill">Locales</a>
+                </div>
+                <div class="col text-center m-2">
+                    <a href="sightings" class="btn badge-pill">Sightings</a>
+                </div>
+                <div class="clear-float"></div>
+            </div>
+        </nav>
+		<div class="container">
+            <div class="row m-4 border border-dark">
+                <div class="col-3 text-center m-3">
+                    <span class="h3">Edit Locale</span>
+                </div>
+                <div class="col-7 text-center m-3">
+                    <form action="editLocale" method="POST">
+                        <div class="form-group row">
+                            <label for="localeName" class="col-3 col-form-label">Name</label>
+                            <div class="col-9">
+                                <input type="text" name="localeName" id="localeName" class="form-control" th:value="${locale.localeName}"/>
+                                <div th:if="${#fields.hasErrors('locale.localeName')}">
+                                    <p th:each="error : ${#fields.errors('locale.localeName')}" class="alert alert-danger" th:text="${error}"> Bad Name </p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="localeDossier" class="col-3 col-form-label">Description</label>
+                            <div class="col-9">
+                                <input type="text" name="localeDossier" id="localeDossier" class="form-control"  th:value="${locale.localeDossier}"/>
+                                <div th:if="${#fields.hasErrors('locale.localeDossier')}">
+                                    <p th:each="error : ${#fields.errors('locale.localeDossier')}" class="alert alert-danger" th:text="${error}"> Bad Description </p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="address" class="col-3 col-form-label">Address</label>
+                            <div class="col-9">
+                                <input type="text" name="address" id="address" class="form-control"  th:value="${locale.address}"/>
+                                <div th:if="${#fields.hasErrors('locale.address')}">
+                                    <p th:each="error : ${#fields.errors('locale.address')}" class="alert alert-danger" th:text="${error}"> Bad Address </p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="district" class="col-3 col-form-label">District</label>
+                            <div class="col-9">
+                                <input type="text" name="district" id="district" class="form-control"  th:value="${locale.district}"/>
+                                <div th:if="${#fields.hasErrors('locale.district')}">
+                                    <p th:each="error : ${#fields.errors('locale.district')}" class="alert alert-danger" th:text="${error}"> Bad District </p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="city" class="col-3 col-form-label">City</label>
+                            <div class="col-9">
+                                <input type="text" name="city" id="city" class="form-control"  th:value="${locale.city}"/>
+                                <div th:if="${#fields.hasErrors('locale.city')}">
+                                    <p th:each="error : ${#fields.errors('locale.city')}" class="alert alert-danger" th:text="${error}"> Bad City </p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="country" class="col-3 col-form-label">Country</label>
+                            <div class="col-9">
+                                <input type="text" name="country" id="country" class="form-control"  th:value="${locale.country}"/>
+                                <div th:if="${#fields.hasErrors('locale.country')}">
+                                    <p th:each="error : ${#fields.errors('locale.country')}" class="alert alert-danger" th:text="${error}"> Bad Country </p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="longLat" class="col-3 col-form-label">Coordinates</label>
+                            <div class="col-9">
+                                <input type="text" name="longLat" id="longLat" class="form-control"  th:value="${locale.longLat}"/>
+                                <div th:if="${#fields.hasErrors('locale.longLat')}">
+                                    <p th:each="error : ${#fields.errors('locale.longLat')}" class="alert alert-danger" th:text="${error}"> Bad Coordinates </p>
+                                </div>
+                            </div>
+                        </div>
+                        <input type="hidden" name="localeId" th:value="${locale.localeId}"/>
+                        <button type="submit" class="btn btn-primary">Update Locale</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+		<footer></footer>
+		<script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+        <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+	</body>
+</html>

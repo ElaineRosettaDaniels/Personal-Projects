@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en"  xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+        <title>Power Classes</title>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+        <link href="../home.css" rel="stylesheet" th:href="@{../home.css}"> 
+        <script src="https://kit.fontawesome.com/27ef6fc883.js" crossorigin="anonymous"></script>
+    </head>
+	
+	<body>
+		<header>
+            <h1>Power Classes</h1>
+            <hr/>
+		</header>
+		
+		<nav>
+            <div class="row m-4 border border-dark">
+                <div class="col text-center m-2">
+                    <a href="/" class="btn badge-pill">Home</a>
+                </div>
+                <div class="col text-center m-2">
+                    <a href="superhumans" class="btn badge-pill">Superhumans</a>
+                </div>
+                <div class="col text-center m-2">
+                    <a href="organizations" class="btn badge-pill">Organizations</a>
+                </div>
+                <div class="col text-center m-2">
+                    <a href="powerclass" class="btn badge-pill">Power Classes</a>
+                </div>
+                <div class="col text-center m-2">
+                    <a href="locales" class="btn badge-pill">Locales</a>
+                </div>
+                <div class="col text-center m-2">
+                    <a href="sightings" class="btn badge-pill">Sightings</a>
+                </div>
+                <div class="clear-float"></div>
+            </div>
+        </nav>
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-3">
+                    <div class="card btn" id="martial-adept" style="width: 18rem;">
+                        <i class="fas fa-fist-raised fa-4x"></i>
+                        <div class="card-body">
+                            <h5 class="card-title">Martial Adept</h5>
+                            <p class="card-text"></p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="card btn" id="powerhouse" style="width: 18rem;">
+                        <i class="fas fa-shield-alt fa-4x"></i>
+                        <div class="card-body">
+                            <h5 class="card-title">Powerhouse</h5>
+                            <p class="card-text"></p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="card btn" id="expeditious-transporter" style="width: 18rem;">
+                        <i class="fas fa-running fa-4x"></i>
+                        <div class="card-body">
+                            <h5 class="card-title">Expeditious Transporter</h5>
+                            <p class="card-text"></p>
+                        </div>
+                    </div>    
+                </div>
+                <div class="col-md-3">
+                    <div class="card btn" id="supertech-user" style="width: 18rem;">
+                        <i class="fas fa-cogs fa-4x"></i>
+                        <div class="card-body">
+                            <h5 class="card-title">Supertech User</h5>
+                            <p class="card-text"></p>
+                        </div>
+                    </div>    
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-3">
+                    <div class="card btn" id="magic-caster" style="width: 18rem;">
+                        <i class="fas fa-hat-wizard fa-4x"></i>
+                        <div class="card-body">
+                            <h5 class="card-title">Magic Caster</h5>
+                            <p class="card-text"></p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="card btn" id="mentalist" style="width: 18rem;">
+                        <i class="fas fa-brain fa-4x"></i>
+                        <div class="card-body">
+                            <h5 class="card-title">Mentalist</h5>
+                            <p class="card-text"></p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="card btn" id="shapeshifter" style="width: 18rem;">
+                        <i class="fas fa-sync-alt fa-4x"></i>
+                        <div class="card-body">
+                            <h5 class="card-title">Shapeshifter</h5>
+                            <p class="card-text"></p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="card btn" id="animalistic-mutant" style="width: 18rem;">
+                        <i class="fas fa-paw fa-4x"></i>
+                        <div class="card-body">
+                            <h5 class="card-title">Animalistic Mutant</h5>
+                            <p class="card-text"></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-3">
+                    <div class="card btn" id="energy-manipulator" style="width: 18rem;">
+                        <i class="fas fa-bolt fa-4x"></i>
+                        <div class="card-body">
+                            <h5 class="card-title">Energy Manipulator</h5>
+                            <p class="card-text"></p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="card btn" id="extraterrestial" style="width: 18rem;">
+                        <i class="fas fa-hand-spock fa-4x"></i>
+                        <div class="card-body">
+                            <h5 class="card-title">Extraterrestial</h5>
+                            <p class="card-text"></p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="card btn" id="environment-manipulator" style="width: 18rem;">
+                        <i class="fas fa-leaf fa-4x"></i>
+                        <div class="card-body">
+                            <h5 class="card-title">Environment Manipulator</h5>
+                            <p class="card-text"></p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="card btn" id="divine-entity" style="width: 18rem;">
+                        <i class="fas fa-ankh fa-4x"></i>
+                        <div class="card-body">
+                            <h5 class="card-title">Divine Entity</h5>
+                            <p class="card-text"></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+		<footer>
+		
+		</footer>
+		<script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+        <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+	</body>
+
+
+
+
+</html>

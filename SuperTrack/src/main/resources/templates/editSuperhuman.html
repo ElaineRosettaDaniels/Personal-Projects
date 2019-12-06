@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+		<title>Edit Superhuman</title>
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+        <link href="../home.css" rel="stylesheet" th:href="@{../home.css}">
+    </head>
+	
+	<body>
+		<header>
+            <h1>Edit Superhuman</h1>
+            <hr/>
+		</header>
+		
+		<nav>
+            <div class="row m-4 border border-dark">
+                <div class="col text-center m-2">
+                    <a href="/" class="btn badge-pill">Home</a>
+                </div>
+                <div class="col text-center m-2">
+                    <a href="superhumans" class="btn badge-pill">Superhumans</a>
+                </div>
+                <div class="col text-center m-2">
+                    <a href="organizations" class="btn badge-pill">Organizations</a>
+                </div>
+                <div class="col text-center m-2">
+                    <a href="locales" class="btn badge-pill">Locales</a>
+                </div>
+                <div class="col text-center m-2">
+                    <a href="sightings" class="btn badge-pill">Sightings</a>
+                </div>
+                <div class="clear-float"></div>
+            </div>
+        </nav>
+		<div class="container">
+            <div class="row m-4 border border-dark">
+                <div class="col-3 text-center m-3">
+                    <span class="h3">Edit Superhuman</span>
+                </div>
+                <div class="col-7 text-center m-3">
+                    <form action="editSuperhuman" method="POST">
+                        <div class="form-group row">
+                            <label for="superName" class="col-3 col-form-label">Name</label>
+                            <div class="col-9">
+                                <input type="text" name="superName" id="superName" class="form-control" th:value="${superhuman.superName}"/>
+                                <div th:if="${#fields.hasErrors('superhuman.superName')}">
+                                    <p th:each="error : ${#fields.errors('superhuman.superName')}" class="alert alert-danger" th:text="${error}">Bad Name</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="superDossier" class="col-3 col-form-label">Brief Description</label>
+                            <div class="col-9">
+                                <input type="text" name="superDossier" id="superDossier" class="form-control"  th:value="${superhuman.superDossier}"/>
+                                <div th:if="${#fields.hasErrors('superhuman.superDossier')}">
+                                    <p th:each="error : ${#fields.errors('superhuman.superDossier')}" class="alert alert-danger" th:text="${error}">Bad Description</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="powerClass" class="col-3 col-form-label">Power Class</label>
+                            <div class="col-9">
+                                <select name="powerClass" id="powerClass" class="form-control" th:value="${superhuman.powerClass}" th:selected="${superhuman.powerClass}">
+                                    <option value="Martial Adept">Martial Adept</option>
+                                    <option value="Powerhouse">Powerhouse</option>
+                                    <option value="Expeditious Transporter">Expeditious Transporter</option>
+                                    <option value="Supertech User">Supertech User</option>
+                                    <option value="Magic Caster">Magic Caster</option>
+                                    <option value="Mentalist">Mentalist</option>
+                                    <option value="Shapeshifter">Shapeshifter</option>
+                                    <option value="Animalistic Mutant">Animalistic Mutant</option>
+                                    <option value="Energy Manipulator">Energy Manipulator</option>
+                                    <option value="Extraterrestrial">Extraterrestrial</option>
+                                    <option value="Enivornment Manipulator">Enviornment Manipulator</option>
+                                    <option value="Divine Entity">Divine Entity</option>
+                                </select>
+                                <div th:if="${#fields.hasErrors('superhuman.powerClass')}">
+                                    <p th:each="error : ${#fields.errors('superhuman.powerClass')}" class="alert alert-danger" th:text="${error}">Bad Power Class</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="alignment" class="col-3 col-form-label">Alignment</label>
+                            <div class="col-9">
+                                <input type="radio" name="alignment" id="choiceHero" value="H"> Hero
+                                <input type="radio" name="alignment" id="choiceVillain" value="V"> Villain
+                                <div th:if="${#fields.hasErrors('superhuman.alignment')}">
+                                    <p th:each="error : ${#fields.errors('superhuman.alignment')}" class="alert alert-danger" th:text="${error}">Bad Alignment</p>
+                                </div>
+                            </div>
+                        </div>
+                        <input type="hidden" name="superId" th:value="${superhuman.superId}"/>
+                        <button type="submit" class="btn btn-primary">Update Superhuman</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+		<footer></footer>
+		<script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+        <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+	</body>
+</html>

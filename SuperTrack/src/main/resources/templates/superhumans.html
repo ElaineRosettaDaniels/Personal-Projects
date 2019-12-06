@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en"  xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+        <title>Superhuman</title>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+        <link href="../home.css" rel="stylesheet" th:href="@{../home.css}">
+	</head>
+	<body>
+		<header>
+            <h1>Superhuman</h1>
+            <hr/>
+		</header>
+		<nav>
+            <div class="row m-4 border border-dark">
+                <div class="col text-center m-2">
+                    <a href="/" class="btn badge-pill">Home</a>
+                </div>
+                <div class="col text-center m-2">
+                    <a href="superhumans" class="btn badge-pill">Superhumans</a>
+                </div>
+                <div class="col text-center m-2">
+                    <a href="organizations" class="btn badge-pill">Organizations</a>
+                </div>
+                <div class="col text-center m-2">
+                    <a href="locales" class="btn badge-pill">Locales</a>
+                </div>
+                <div class="col text-center m-2">
+                    <a href="sightings" class="btn badge-pill">Sightings</a>
+                </div>
+                <div class="clear-float"></div>
+            </div>
+        </nav>
+        <div class="container">
+            <div class="row m-4 border border-dark">
+                <div class="col-3 text-center m-3">
+                    <span class="h3">Add Superhuman</span>
+                </div>
+                <div class="col-7 text-center m-3">
+                    <div class="col-12 m-1 text-center" th:if="${!errors.isEmpty()}">
+                        <p class="alert alert-danger" th:each="error : ${errors}" th:text="${error.message}">Error Message</p>
+                    </div>
+                    <form action="addSuperhuman" method="POST">
+                        <div class="form-group row">
+                            <label for="superName" class="col-3 col-form-label">Name</label>
+                            <div class="col-9">
+                                <input type="text" name="superName" id="superName" class="form-control"/>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="superDossier" class="col-3 col-form-label">Brief Description</label>
+                            <div class="col-9">
+                                <input type="text" name="superDossier" id="superDossier" class="form-control"/>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="powerClass" class="col-3 col-form-label">Power Class</label>
+                            <div class="col-9">
+                                <select name="powerClass" id="powerClass" class="form-control">
+                                    <option value="" disabled selected>Select an option</option>
+                                    <option value="Martial Adept">Martial Adept</option>
+                                    <option value="Powerhouse">Powerhouse</option>
+                                    <option value="Expeditious Transporter">Expeditious Transporter</option>
+                                    <option value="Supertech User">Supertech User</option>
+                                    <option value="Magic Caster">Magic Caster</option>
+                                    <option value="Mentalist">Mentalist</option>
+                                    <option value="Shapeshifter">Shapeshifter</option>
+                                    <option value="Animalistic Mutant">Animalistic Mutant</option>
+                                    <option value="Energy Manipulator">Energy Manipulator</option>
+                                    <option value="Extraterrestrial">Extraterrestrial</option>
+                                    <option value="Enivornment Manipulator">Enviornment Manipulator</option>
+                                    <option value="Divine Entity">Divine Entity</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="alignment" class="col-3 col-form-label">Alignment</label>
+                            <div class="col-9">
+                                <input type="radio" name="alignment" id="choiceHero" value="H"> Hero
+                                <input type="radio" name="alignment" id="choiceVillain" value="V"> Villain
+                            </div>
+                        </div>
+                        <button type="submit" class="btn btn-primary" id="submitSuper">Add Superhuman</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="row m-4 border border-dark">
+            <div class="col text-center m-3">
+                <table class="table table-striped" id="superTable">
+                    <thead>
+                        <tr>
+                            <th>Superhuman ID</th>
+                            <th>Name</th>
+                            <th>Description</th>
+                            <th>Power Class</th>
+                            <th>Alignment</th>
+                            <th>Edit</th>
+                            <th>Delete</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr th:each="superhuman : ${superhumans}">
+                            <td th:text="${superhuman.superId}">Superhuman ID</td>
+                            <td th:text="${superhuman.superName}">Name</td>
+                            <td th:text="${superhuman.superDossier}">Description</td>
+                            <td th:text="${superhuman.powerClass}">Power Class</td>
+                            <td th:text="${superhuman.alignment}">Alignment</td>
+                            <td><a href="#" th:href="@{/editSuperhuman(superId=${superhuman.superId})}">Edit</a></td>
+                            <td><a href="#" th:href="@{/deleteSuperhuman(superId=${superhuman.superId})}">Delete</a></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+		<footer></footer>
+		<script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+        <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+        <script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
+        <script src="../home.js" th:href="@{home.js}"></script>
+	</body>
+</html>

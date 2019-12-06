@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+		<title>Organization Details</title>
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+        <link href="../home.css" rel="stylesheet" th:href="@{../home.css}">
+    </head>
+	
+	<body>
+		<header>
+            <h1>Organization Details</h1>
+            <hr/>
+		</header>
+		<nav>
+            <div class="row m-4 border border-dark">
+                <div class="col text-center m-2">
+                    <a href="/" class="btn badge-pill">Home</a>
+                </div>
+                <div class="col text-center m-2">
+                    <a href="superhumans" class="btn badge-pill">Superhumans</a>
+                </div>
+                <div class="col text-center m-2">
+                    <a href="organizations" class="btn badge-pill">Organizations</a>
+                </div>
+                <div class="col text-center m-2">
+                    <a href="locales" class="btn badge-pill">Locales</a>
+                </div>
+                <div class="col text-center m-2">
+                    <a href="sightings" class="btn badge-pill">Sightings</a>
+                </div>
+                <div class="clear-float"></div>
+            </div>
+        </nav>
+		<div class="row m-4 border border-dark">
+            <div class="col-6 text-right"><strong>ID</strong></div>
+            <div class="col-6 text-left">
+                <span th:text="${org.orgId}">display id</span>
+            </div>
+            
+            <div class="col-6 text-right"><strong>Name</strong></div>
+            <div class="col-6 text-left">
+                <span th:text="${org.orgName}">display name</span>
+            </div>
+            
+            <div class="col-6 text-right"><strong>Description</strong></div>
+            <div class="col-6 text-left">
+                <span th:text="${org.orgDossier}">display description</span>
+            </div>
+            <div class="col-6 text-right"><strong>Locale</strong></div>
+            <div class="col-6 text-left">
+                <span th:text="${org.locale.localeId + ' - ' + 
+                        org.locale.localeName}">display locale</span>
+            </div>
+            <div class="col-6 text-right"><strong>Members</strong></div>
+            <div class="col-6 text-left">
+                <span th:each="superhuman : ${org.orgMembers}">
+                    <span th:text="${superhuman.superId + ' - ' + superhuman.superName}">
+                        display superhuman</span><br/>
+                </span>
+            </div>
+        </div>
+		<footer></footer>
+		<script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+        <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+	</body>
+</html>
