@@ -129,9 +129,11 @@ public class ServiceLayerImpl implements ServiceLayer {
         if (distBtwn <= 30) {
             saveRoll = rollDie(1, 20) + tar.getDexBonus();
         }
+        // full dmg on fail
         if (saveRoll < dC) {
             damage = rollDie(9, 8);
         }
+        // half dmg on success
         if (saveRoll >= dC) {
             damage = rollDie(9, 8) / 2;
         }
@@ -147,9 +149,11 @@ public class ServiceLayerImpl implements ServiceLayer {
         if (distBtwn <= 60) {
             saveRoll = rollDie(1, 20) + tar.getDexBonus();
         }
+        // full dmg on fail
         if (saveRoll < dC) {
             damage = rollDie(4, 8);
         }
+        // half dmg on success
         if (saveRoll >= dC) {
             damage = rollDie(4, 8) / 2;
         }
@@ -162,6 +166,31 @@ public class ServiceLayerImpl implements ServiceLayer {
             tar.setHitPoints(tar.getHitPoints() - dam);
         }
         veDao.updateVehicle(tar);
+    }
+    
+    // Method to choose which station attack is being used:
+    
+    @Override
+    public int getActionAndMakeAttack(String stAction, Vehicle atk, Vehicle tar) {
+        int dmg = 0;
+        switch (stAction) {
+            case "Harpoon":
+               dmg = atkHarpoon(atk, tar);
+               break;
+            case "Scythes":
+                dmg = atkScythes(atk, tar);
+                break;
+            case "WreckBall":
+                dmg = atkWreckBall(atk, tar);
+                break;
+            case "Acid":
+                dmg = atkAcid(atk, tar);
+                break;
+            case "Flame":
+                dmg = atkFlame(atk, tar);
+                break;
+        }
+        return dmg;
     }
     
     // VehicleDao passthru
