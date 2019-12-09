@@ -193,6 +193,21 @@ public class ServiceLayerImpl implements ServiceLayer {
         return dmg;
     }
     
+    // Don't forget to update in controller method after doing this:
+    
+    @Override
+    public Vehicle moveVehicleUpToSpeed(Vehicle v) {
+        int vPosition = v.getTotalDist();
+        int vSpd = v.getSpeed();
+        vPosition += vSpd;
+        // Ichor boost adds an extra 30 ft whenever it moves
+        if (v.isIchorBoosted()) {
+            vPosition += 30;
+        }
+        v.setTotalDist(vPosition);
+        return v;
+    }
+    
     // VehicleDao passthru
     
     @Override

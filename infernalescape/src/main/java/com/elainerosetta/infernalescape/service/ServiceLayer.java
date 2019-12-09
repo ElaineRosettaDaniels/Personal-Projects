@@ -25,6 +25,7 @@ public interface ServiceLayer {
     int atkFlame(Vehicle atk, Vehicle tar);
     void checkDamVsThresAndDeal(int dam, Vehicle tar);
     int getActionAndMakeAttack(String stAction, Vehicle atk, Vehicle tar);
+    Vehicle moveVehicleUpToSpeed(Vehicle v);
     
     // VehicleDao passthru
     Vehicle getVehicleById(int vehicleId);
