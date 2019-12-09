@@ -48,6 +48,17 @@ public class ServiceLayerImpl implements ServiceLayer {
         return total;
     }
     
+    /*
+        Hey Ellie, we're gonna have to do something about these. It's kinda sloppy right now,
+    but I think better that we have them so we can actually make some progress on the game. 
+    Gotta stay in the groove. Anyway, we need to figure out a way to differentiate between
+    actions that require an attack roll vs. actions that need a saving throw. If you can't build it, 
+    find someone online who already has. But for now, let's make this game with just these
+    handful of stations so we can have something working. 
+        Keep at it, love you.
+        -Elaine
+    */
+    
     // Harpoon Flinger attack method
     @Override
     public int atkHarpoon(Vehicle atk, Vehicle tar) {
